@@ -26,6 +26,7 @@ public class Spel implements ISpel {
      */
     public void neemDeel(ISpeler speler) {
         this.spelers.add(speler);
+        this.tussenstand.put(speler, 0);
         if (this.spelers.size() == 5)
             speelSpel();
     }
