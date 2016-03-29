@@ -7,7 +7,7 @@ import java.util.*;
  */
 public class Spel implements ISpel {
     private ArrayList<ISpeler> spelers;
-    private HashMap<ISpeler, Number> tussenstand;
+    private HashMap<ISpeler, Integer> tussenstand;
     private int beurt;
 
     /**
@@ -15,7 +15,7 @@ public class Spel implements ISpel {
      */
     public Spel() {
         this.spelers = new ArrayList<ISpeler>();
-        this.tussenstand = new HashMap<ISpeler, Number>();
+        this.tussenstand = new HashMap<ISpeler, Integer>();
         this.beurt = 0;
     }
 
@@ -35,10 +35,10 @@ public class Spel implements ISpel {
      * Start het spel en speel 19 ronden.
      */
     private void speelSpel() {
-        while (this.beurt < 19){
-            Ronde ronde = new Ronde(this.spelers, bepaalSlagen());
+        for (; this.beurt < 19; this.beurt++) {
+            Ronde ronde = new Ronde(
+                    new ArrayList<ISpeler>(this.spelers), bepaalSlagen());
             berekenTussenstand(ronde.speelRonde());
-            this.beurt++;
             roteerDeler();
         }
     }
@@ -47,12 +47,9 @@ public class Spel implements ISpel {
      * Update de tussenstand
      * @param scores de scores aan het eind van de gespeelde ronde.
      */
-    private void berekenTussenstand(HashMap<ISpeler, Number> scores){
-        for (Map.Entry<ISpeler, Number> entry : scores.entrySet()){
-            this.tussenstand.put(entry.getKey(),
-                    entry.getValue().intValue()
-                    + this.tussenstand.get(entry.getKey()).intValue());
-        }
+    private void berekenTussenstand(HashMap<ISpeler, Integer> scores){
+        for (Map.Entry<ISpeler, Integer> entry : this.tussenstand.entrySet())
+            entry.setValue(entry.getValue() + scores.get(entry.getKey()));
     }
 
     /**
@@ -64,7 +61,7 @@ public class Spel implements ISpel {
         if (this.beurt < 10)
             return 10 - this.beurt;
         else
-            return this.beurt -8;
+            return this.beurt - 8;
     }
 
     /**

@@ -32,7 +32,7 @@ public class Ronde {
      * spelers, speelt de slagen in de ronde en berekend de scores per speler.
      * @return De score per speler.
      */
-    public HashMap<ISpeler, Number> speelRonde() {
+    public HashMap<ISpeler, Integer> speelRonde() {
         deelKaarten();
         vraagBiedingen();
         speelSlagen();
@@ -68,7 +68,8 @@ public class Ronde {
             Slag slag = new Slag(new ArrayList<ISpeler>(this.spelers));
             ISpeler slagWinnaar = slag.speelSlag();
             this.scores.get(slagWinnaar).winSlag();
-            Collections.rotate(this.spelers, -(this.spelers.indexOf(slagWinnaar)));
+            Collections.rotate(this.spelers,
+                    -(this.spelers.indexOf(slagWinnaar)));
         }
     }
 
@@ -76,8 +77,8 @@ public class Ronde {
      * Bereken de rondescore per speler.
      * @return De score per speler.
      */
-    private HashMap<ISpeler, Number> berekenScores() {
-        HashMap<ISpeler, Number> rondeScores = new HashMap<ISpeler, Number>();
+    private HashMap<ISpeler, Integer> berekenScores() {
+        HashMap<ISpeler, Integer> rondeScores = new HashMap<ISpeler, Integer>();
         for (Map.Entry<ISpeler, Score> entry : this.scores.entrySet())
             rondeScores.put(entry.getKey(), entry.getValue().berekenScore());
         return rondeScores;
