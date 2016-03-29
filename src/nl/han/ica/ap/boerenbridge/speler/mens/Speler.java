@@ -50,7 +50,10 @@ public class Speler implements ISpeler {
         System.out.println("\nKaarten in hand:");
         printKaartenMetIndex(this.hand);
         System.out.print("\nKies een kaart: ");
-        return this.hand.get(vraagInputInteger());
+        int index = vraagInputInteger();
+        Kaart kaart = this.hand.get(index);
+        this.hand.remove(index);
+        return kaart;
     }
 
     @Override
