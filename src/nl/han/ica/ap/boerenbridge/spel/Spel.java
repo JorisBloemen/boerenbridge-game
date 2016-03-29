@@ -20,10 +20,7 @@ public class Spel implements ISpel {
     }
 
     // TODO: 2016-03-22: Implementeren unit test voor Spel
-    /**
-     * Voeg een speler toe aan het spel, start het spel bij voldoende spelers.
-     * @param speler Deelnemer aan het spel.
-     */
+    @Override
     public void neemDeel(ISpeler speler) {
         this.spelers.add(speler);
         this.tussenstand.put(speler, 0);
