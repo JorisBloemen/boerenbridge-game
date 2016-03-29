@@ -13,6 +13,13 @@ import java.util.HashMap;
  * als hierom wordt gevraagd.
  */
 public interface ISpeler {
+
+    /**
+     * Geef de naam van de speler.
+     * @return De naam van de speler.
+     */
+    String geefNaam();
+
     /**
      * Doe een bod over het aantal verwachte gewonnen slagen.
      * @return Het gemaakte bod.

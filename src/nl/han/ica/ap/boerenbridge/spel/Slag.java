@@ -46,6 +46,7 @@ public class Slag {
      */
     private void vraagKaarten() {
         for (ISpeler speler : this.spelers) {
+            System.out.println(speler.geefNaam() + ":");
             Kaart kaart = speler.geefKaart(
                     new ArrayList<Kaart>(this.gespeeldeKaarten.values()));
             this.gespeeldeKaarten.put(speler, kaart);

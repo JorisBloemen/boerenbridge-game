@@ -47,6 +47,9 @@ public class Spel implements ISpel {
     private void berekenTussenstand(HashMap<ISpeler, Integer> scores){
         for (Map.Entry<ISpeler, Integer> entry : this.tussenstand.entrySet())
             entry.setValue(entry.getValue() + scores.get(entry.getKey()));
+        System.out.println("\n--- Tussenstand ---");
+        for (ISpeler speler : this.spelers)
+            speler.updateScore(this.tussenstand.get(speler));
     }
 
     /**

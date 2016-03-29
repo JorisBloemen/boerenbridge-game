@@ -55,8 +55,10 @@ public class Ronde {
      */
     private void vraagBiedingen() {
         // TODO: 2016-03-22: Biedingen moeten gevalideerd worden. De som mag niet hetzelfde zijn als het aantal slagen.
-        for (ISpeler speler : this.spelers)
+        for (ISpeler speler : this.spelers) {
+            System.out.println(speler.geefNaam() + ":");
             this.scores.put(speler, new Score(speler, speler.doeBieding()));
+        }
     }
 
     /**
