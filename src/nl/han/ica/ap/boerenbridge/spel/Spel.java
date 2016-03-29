@@ -24,6 +24,7 @@ public class Spel implements ISpel {
      * Voeg een speler toe aan het spel, start het spel bij voldoende spelers.
      * @param speler Deelnemer aan het spel.
      */
+    @Override
     public void neemDeel(ISpeler speler) {
         this.spelers.add(speler);
         this.tussenstand.put(speler, 0);
