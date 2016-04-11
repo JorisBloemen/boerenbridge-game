@@ -48,4 +48,6 @@ public interface ISpeler {
      * @param score De score van de speler.
      */
     void updateScore(int score);
+
+    ArrayList<Kaart> toonHand();
 }

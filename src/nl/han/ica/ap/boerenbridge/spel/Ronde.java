@@ -54,11 +54,38 @@ public class Ronde {
      * slagen.
      */
     private void vraagBiedingen() {
-        // TODO: 2016-03-22: Biedingen moeten gevalideerd worden. De som mag niet hetzelfde zijn als het aantal slagen.
+        // TODO: 2016-04-11: nog testen
+        int totaleBieding = 0;
+
         for (ISpeler speler : this.spelers) {
             System.out.println(speler.geefNaam() + ":");
-            this.scores.put(speler, new Score(speler, speler.doeBieding()));
+            totaleBieding += vraagValideBieding(speler, totaleBieding);
         }
+    }
+
+    private int vraagValideBieding(ISpeler speler, int totaleBieding) {
+        int bieding;
+        do {
+            bieding = speler.doeBieding();
+        } while (!(biedingNietHogerDanAantalSlagen(bieding)
+                && somOngelijkAanAantalSlagen(bieding, totaleBieding, speler)));
+        this.scores.put(speler, new Score(speler, bieding));
+        return bieding;
+    }
+
+    private boolean biedingNietHogerDanAantalSlagen(int bieding) {
+        if (bieding > this.aantalSlagen)
+                return false;
+        return true;
+    }
+
+    private boolean somOngelijkAanAantalSlagen(int bieding,
+                                               int totaleBieding,
+                                               ISpeler speler) {
+        if (speler == this.spelers.get(this.spelers.size() - 1))
+            if ((bieding + totaleBieding) == this.aantalSlagen)
+                return false;
+        return true;
     }
 
     /**
