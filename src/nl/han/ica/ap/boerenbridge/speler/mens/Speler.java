@@ -1,12 +1,11 @@
 package nl.han.ica.ap.boerenbridge.speler.mens;
 
 import nl.han.ica.ap.boerenbridge.kaart.Kaart;
-import nl.han.ica.ap.boerenbridge.spel.ISpeler;
+import nl.han.ica.ap.boerenbridge.speler.ISpeler;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.StringJoiner;
 
 /**
  * Implementatie van de menselijke speler.
@@ -58,6 +57,11 @@ public class Speler implements ISpeler {
         System.out.println(this.naam + ": " + score);
     }
 
+    @Override
+    public void bekijkBord(ArrayList<Kaart> bord) {
+
+    }
+
     /**
      *  Soteer kaarten op basis van type en waarde.
      * @param kaarten De te sorteren set van kaarten.
@@ -100,10 +104,13 @@ public class Speler implements ISpeler {
                 new InputStreamReader(System.in));
 
         String bodstr = null;
-        try {
-            bodstr = br.readLine();
-        } catch (java.io.IOException ioe) {
-            System.err.println("io error: " + ioe.toString());
+
+        while(bodstr == null) {
+            try {
+                bodstr = br.readLine();
+            } catch (java.io.IOException ioe) {
+                ioe.printStackTrace();
+            }
         }
 
         return Integer.parseInt(bodstr);
