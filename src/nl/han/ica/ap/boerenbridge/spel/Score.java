@@ -1,5 +1,7 @@
 package nl.han.ica.ap.boerenbridge.spel;
 
+import nl.han.ica.ap.boerenbridge.speler.ISpeler;
+
 /**
  * Een score object zit gekoppeld aan een ISpeler, bewaard het bod van de
  * speler, houd het aantal gewonnen slagen bij en kan de score berekenen.

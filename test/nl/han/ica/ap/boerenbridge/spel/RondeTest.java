@@ -1,6 +1,7 @@
 package nl.han.ica.ap.boerenbridge.spel;
 
 import nl.han.ica.ap.boerenbridge.kaart.Kaart;
+import nl.han.ica.ap.boerenbridge.speler.ISpeler;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,52 +17,67 @@ public class RondeTest {
 
     private ISpeler speler1, speler2, speler3, speler4, speler5;
     private ArrayList<ISpeler> spelers;
-    private HashMap<ISpeler, Number> resultaat;
+    private HashMap<ISpeler, Integer> resultaat;
 
     @Before
     public void setUp() throws Exception {
         this.speler1 = new ISpeler() {
+            public String geefNaam() { return ""; }
             public int doeBieding() { return 1; }
             public void ontvangKaart(Kaart kaart) { }
             public Kaart geefKaart(ArrayList<Kaart> kaarten)
             { return new Kaart(SCHOPPEN, VIER); }
             public void updateScore(int score) { }
+            public ArrayList toonHand() { return null; }
+            public void bekijkBord(ArrayList<Kaart> bord) {}
         };
 
         this.speler2 = new ISpeler() {
+            public String geefNaam() { return ""; }
             public int doeBieding() { return 1; }
             public void ontvangKaart(Kaart kaart) { }
             public Kaart geefKaart(ArrayList<Kaart> kaarten)
             { return new Kaart(SCHOPPEN, ACHT); }
             public void updateScore(int score) { }
+            public ArrayList toonHand() { return null; }
+            public void bekijkBord(ArrayList<Kaart> bord) {}
         };
 
         this.speler3 = new ISpeler() {
+            public String geefNaam() { return ""; }
             public int doeBieding() { return 0; }
             public void ontvangKaart(Kaart kaart) { }
             public Kaart geefKaart(ArrayList<Kaart> kaarten)
             { return new Kaart(HARTEN, VIER); }
             public void updateScore(int score) { }
+            public ArrayList toonHand() { return null; }
+            public void bekijkBord(ArrayList<Kaart> bord) {}
         };
 
         this.speler4 = new ISpeler() {
+            public String geefNaam() { return ""; }
             public int doeBieding() { return 0; }
             public void ontvangKaart(Kaart kaart) { }
             public Kaart geefKaart(ArrayList<Kaart> kaarten)
             { return new Kaart(RUITEN, VIER); }
             public void updateScore(int score) { }
+            public ArrayList toonHand() { return null; }
+            public void bekijkBord(ArrayList<Kaart> bord) {}
         };
 
         this.speler5 = new ISpeler() {
+            public String geefNaam() { return ""; }
             public int doeBieding() { return 0; }
             public void ontvangKaart(Kaart kaart) { }
             public Kaart geefKaart(ArrayList<Kaart> kaarten)
             { return new Kaart(RUITEN, ZEVEN); }
             public void updateScore(int score) { }
+            public ArrayList toonHand() { return null; }
+            public void bekijkBord(ArrayList<Kaart> bord) {}
         };
 
         this.spelers = new ArrayList<ISpeler>();
-        this.resultaat = new HashMap<ISpeler, Number>();
+        this.resultaat = new HashMap<ISpeler, Integer>();
     }
 
     @Test
@@ -75,11 +91,11 @@ public class RondeTest {
         Ronde ronde = new Ronde(this.spelers, 1);
         this.resultaat = ronde.speelRonde();
 
-        assertEquals(-2, this.resultaat.get(this.speler1));
-        assertEquals(12, this.resultaat.get(this.speler2));
-        assertEquals(10, this.resultaat.get(this.speler3));
-        assertEquals(10, this.resultaat.get(this.speler4));
-        assertEquals(10, this.resultaat.get(this.speler5));
+        assertEquals(-2, (long) this.resultaat.get(this.speler1));
+        assertEquals(12, (long) this.resultaat.get(this.speler2));
+        assertEquals(10, (long) this.resultaat.get(this.speler3));
+        assertEquals(10, (long) this.resultaat.get(this.speler4));
+        assertEquals(10, (long) this.resultaat.get(this.speler5));
     }
 
     @Test
@@ -91,8 +107,8 @@ public class RondeTest {
         Ronde ronde = new Ronde(this.spelers, 1);
         this.resultaat = ronde.speelRonde();
 
-        assertEquals(10, this.resultaat.get(this.speler3));
-        assertEquals(10, this.resultaat.get(this.speler4));
-        assertEquals(-2, this.resultaat.get(this.speler5));
+        assertEquals(10, (long) this.resultaat.get(this.speler3));
+        assertEquals(10, (long) this.resultaat.get(this.speler4));
+        assertEquals(-2, (long) this.resultaat.get(this.speler5));
     }
 }
