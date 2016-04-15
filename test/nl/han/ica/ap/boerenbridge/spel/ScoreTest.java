@@ -1,6 +1,7 @@
 package nl.han.ica.ap.boerenbridge.spel;
 
 import nl.han.ica.ap.boerenbridge.kaart.Kaart;
+import nl.han.ica.ap.boerenbridge.speler.ISpeler;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,10 +17,12 @@ public class ScoreTest {
     @Before
     public void setUp() throws Exception {
         ISpeler speler = new ISpeler() {
+            public String geefNaam() { return ""; }
             public int doeBieding() { return 0; }
             public void ontvangKaart(Kaart kaart) {}
             public Kaart geefKaart(ArrayList<Kaart> kaarten) { return null; }
             public void updateScore(int score) {}
+            public void bekijkBord(ArrayList<Kaart> bord) {}
         };
 
         this.score = new Score(speler, 4);

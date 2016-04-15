@@ -1,4 +1,4 @@
-package nl.han.ica.ap.boerenbridge.spel;
+package nl.han.ica.ap.boerenbridge.speler;
 
 import nl.han.ica.ap.boerenbridge.kaart.Kaart;
 
@@ -48,4 +48,11 @@ public interface ISpeler {
      * @param score De score van de speler.
      */
     void updateScore(int score);
+
+    /**
+     * De speler krijgt van het spel alle kaarten door die deze ronde gespeelt
+     * zijn.
+     * @param bord De kaarten die gespeelt zijn.
+     */
+    void bekijkBord(ArrayList<Kaart> bord);
 }
