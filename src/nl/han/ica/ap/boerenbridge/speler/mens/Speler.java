@@ -6,6 +6,7 @@ import nl.han.ica.ap.boerenbridge.speler.ISpeler;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Implementatie van de menselijke speler.
@@ -14,7 +15,7 @@ public class Speler implements ISpeler {
 
     private String naam;
     private ArrayList<Kaart> hand;
-    private SpelerControllerConsole spelerController;
+    private ISpelerController spelerController;
 
     /**
      * Initialiseert de speler
@@ -33,9 +34,7 @@ public class Speler implements ISpeler {
 
     @Override
     public int doeBieding() {
-        spelerController.toonKaarten(this.hand);
-        System.out.print("Doe een bod: ");
-        return spelerController.vraagInputInteger();
+        return this.spelerController.vraagBod(this.hand);
     }
 
     @Override
@@ -45,21 +44,13 @@ public class Speler implements ISpeler {
     }
 
     @Override
-    public Kaart geefKaart(ArrayList<Kaart> kaarten) {
-        System.out.println("\nGespeelde kaarten:");
-        spelerController.toonKaarten(kaarten);
-        System.out.println("\nKaarten in hand:");
-        spelerController.toonKaartenMetIndex(this.hand);
-        System.out.print("\nKies een kaart: ");
-        int index = spelerController.vraagInputInteger();
-        Kaart kaart = this.hand.get(index);
-        this.hand.remove(index);
-        return kaart;
+    public Kaart geefKaart(ArrayList<Kaart> bord) {
+        return this.spelerController.vraagKaart(bord, this.hand);
     }
 
     @Override
-    public void updateScore(int score) {
-        System.out.println(this.naam + ": " + score);
+    public void updateTussenstand(HashMap<String, Integer> tussenstand) {
+        this.spelerController.toonTussenstandRonde(tussenstand);
     }
 
     @Override

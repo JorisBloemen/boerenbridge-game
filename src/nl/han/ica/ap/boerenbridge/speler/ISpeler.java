@@ -42,9 +42,9 @@ public interface ISpeler {
     // TODO: 2016-03-22: Speler kan nu alleen zijn eigen score zien, niet die van zijn medespelers.
     /**
      * Geef de tussenstand door aan de speler.
-     * @param score De score van de speler.
+     * @param tussenstand De score per speler.
      */
-    void updateScore(int score);
+    void updateTussenstand(HashMap<String, Integer> tussenstand);
 
     /**
      * Geef alle kaarten in de hand van de speler terug.

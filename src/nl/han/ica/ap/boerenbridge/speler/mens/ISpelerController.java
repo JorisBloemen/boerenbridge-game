@@ -12,17 +12,25 @@ public interface ISpelerController {
 
     /**
      * Vraag gebruiker een bod te doen.
+     * @param hand De kaarten die de speler in zijn hand heeft.
      * @return Het bod van de gebruiker.
      */
-    int vraagBod(ArrayList<Kaart> kaarten);
+    int vraagBod(ArrayList<Kaart> hand);
+
+    /**
+     * Toon de kaarten die gespeeld zijn.
+     * @param bord Kaarten die gespeeld zijn.
+     */
+    void toonBord(ArrayList<Kaart> bord);
 
     /**
      * Vraag de gebruiker een kaart op te spelen op basis van de al gespeelde
      * kaarten.
-     * @param kaarten De gespeelde kaarten.
+     * @param bord De gespeelde kaarten.
+     * @param hand De kaarten die de speler in zijn hand heeft.
      * @return De kaart die de gebruiker speelt.
      */
-    Kaart vraagKaart(ArrayList<Kaart> kaarten);
+    Kaart vraagKaart(ArrayList<Kaart> bord, ArrayList<Kaart> hand);
 
     /**
      * Toon de gebruiker de tussenstand in punten per speler.
