@@ -1,5 +1,7 @@
 package nl.han.ica.ap.boerenbridge.spel;
 
+import nl.han.ica.ap.boerenbridge.speler.ISpeler;
+
 /**
  * Interface voor het boerenbridge spel.
  * Een speler moet zich kunnen aanmelden bij het spel.

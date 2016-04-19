@@ -32,4 +32,6 @@ public class Kaart {
     public KaartWaarde getKaartWaarde() {
         return kaartWaarde;
     }
+
+    // TODO: 20160415: Compair kaart in geval van andere indentifier?
 }

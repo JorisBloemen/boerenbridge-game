@@ -1,11 +1,10 @@
 package nl.han.ica.ap.boerenbridge.spel;
 
 import nl.han.ica.ap.boerenbridge.kaart.Kaart;
-import nl.han.ica.ap.boerenbridge.kaart.KaartType;
-import static nl.han.ica.ap.boerenbridge.kaart.KaartType.*;
-import static nl.han.ica.ap.boerenbridge.kaart.KaartWaarde.*;
+import nl.han.ica.ap.boerenbridge.speler.ISpeler;
 
-import javax.swing.text.html.parser.Entity;
+import static nl.han.ica.ap.boerenbridge.kaart.KaartType.*;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,7 +37,8 @@ public class Slag {
         return bepaalWinnaar();
     }
 
-    // TODO: 2016-03-22: Kaart valideren. Singleton voor validatie?
+    // TODO: 2016-11-4: nog testen
+    // TODO: De speler moet weten of het spel de kaart accepteerd voordat hij hem uit zijn hand verwijderd.
 
     /**
      * Vraag alle spelers een kaart op te gooien en bepaald het te bekennen
@@ -53,6 +53,27 @@ public class Slag {
             if (speler == this.spelers.get(0))
                 this.eersteKaart = kaart;
         }
+    }
+
+    private Kaart vraagValideKaart(ISpeler speler) {
+        Kaart kaart;
+        ArrayList<Kaart> hand = speler.toonHand();
+        do {
+            kaart = speler.geefKaart(
+                    new ArrayList<Kaart>(this.gespeeldeKaarten.values()));
+            if(speler == this.spelers.get(0))
+                return kaart;
+        } while (!kaartVoldoetAanBediening(hand, kaart));
+        return kaart;
+    }
+
+    private Boolean kaartVoldoetAanBediening(ArrayList<Kaart> hand, Kaart kaart){
+        if (kaart.getKaartType() == this.eersteKaart.getKaartType())
+            return true;
+        for (Kaart kaartInHand : hand)
+            if (kaartInHand.getKaartType() == this.eersteKaart.getKaartType())
+                return false;
+        return true;
     }
 
     /**

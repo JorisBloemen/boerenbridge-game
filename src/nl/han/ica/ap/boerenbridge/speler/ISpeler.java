@@ -1,4 +1,4 @@
-package nl.han.ica.ap.boerenbridge.spel;
+package nl.han.ica.ap.boerenbridge.speler;
 
 import nl.han.ica.ap.boerenbridge.kaart.Kaart;
 
@@ -39,13 +39,23 @@ public interface ISpeler {
      */
     Kaart geefKaart(ArrayList<Kaart> kaarten);
 
-    // TODO: 2016-03-22: Speler moet de hand terug geven zodat het spel kan controleren of het een valide kaart is.
-    // ArrayList<Kaart> toonHand();
-
     // TODO: 2016-03-22: Speler kan nu alleen zijn eigen score zien, niet die van zijn medespelers.
     /**
      * Geef de tussenstand door aan de speler.
      * @param score De score van de speler.
      */
     void updateScore(int score);
+
+    /**
+     * Geef alle kaarten in de hand van de speler terug.
+     * @return Kaarten in de hand van de speler.
+     */
+    ArrayList<Kaart> toonHand();
+
+    /**
+     * De speler krijgt van het spel alle kaarten door die deze ronde gespeelt
+     * zijn.
+     * @param bord De kaarten die gespeelt zijn.
+     */
+    void bekijkBord(ArrayList<Kaart> bord);
 }

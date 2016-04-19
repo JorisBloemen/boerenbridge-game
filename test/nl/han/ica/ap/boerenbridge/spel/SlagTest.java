@@ -3,6 +3,8 @@ package nl.han.ica.ap.boerenbridge.spel;
 import nl.han.ica.ap.boerenbridge.kaart.Kaart;
 import static nl.han.ica.ap.boerenbridge.kaart.KaartType.*;
 import static nl.han.ica.ap.boerenbridge.kaart.KaartWaarde.*;
+
+import nl.han.ica.ap.boerenbridge.speler.ISpeler;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,43 +21,58 @@ public class SlagTest {
     @Before
     public void setUp() throws Exception {
         this.speler1 = new ISpeler() {
+            public String geefNaam() { return ""; }
             public int doeBieding() { return 0; }
             public void ontvangKaart(Kaart kaart) { }
             public Kaart geefKaart(ArrayList<Kaart> kaarten)
             { return new Kaart(SCHOPPEN, VIER); }
             public void updateScore(int score) { }
+            public ArrayList toonHand() { return null; }
+            public void bekijkBord(ArrayList<Kaart> bord) {}
         };
 
         this.speler2 = new ISpeler() {
+            public String geefNaam() { return ""; }
             public int doeBieding() { return 0; }
             public void ontvangKaart(Kaart kaart) { }
             public Kaart geefKaart(ArrayList<Kaart> kaarten)
             { return new Kaart(SCHOPPEN, ACHT); }
             public void updateScore(int score) { }
+            public ArrayList toonHand() { return null; }
+            public void bekijkBord(ArrayList<Kaart> bord) {}
         };
 
         this.speler3 = new ISpeler() {
+            public String geefNaam() { return ""; }
             public int doeBieding() { return 0; }
             public void ontvangKaart(Kaart kaart) { }
             public Kaart geefKaart(ArrayList<Kaart> kaarten)
             { return new Kaart(HARTEN, VIER); }
             public void updateScore(int score) { }
+            public ArrayList toonHand() { return null; }
+            public void bekijkBord(ArrayList<Kaart> bord) {}
         };
 
         this.speler4 = new ISpeler() {
+            public String geefNaam() { return ""; }
             public int doeBieding() { return 0; }
             public void ontvangKaart(Kaart kaart) { }
             public Kaart geefKaart(ArrayList<Kaart> kaarten)
             { return new Kaart(RUITEN, VIER); }
             public void updateScore(int score) { }
+            public ArrayList toonHand() { return null; }
+            public void bekijkBord(ArrayList<Kaart> bord) {}
         };
 
         this.speler5 = new ISpeler() {
+            public String geefNaam() { return ""; }
             public int doeBieding() { return 0; }
             public void ontvangKaart(Kaart kaart) { }
             public Kaart geefKaart(ArrayList<Kaart> kaarten)
             { return new Kaart(RUITEN, ZEVEN); }
             public void updateScore(int score) { }
+            public ArrayList toonHand() { return null; }
+            public void bekijkBord(ArrayList<Kaart> bord) {}
         };
 
         this.spelers = new ArrayList<ISpeler>();
