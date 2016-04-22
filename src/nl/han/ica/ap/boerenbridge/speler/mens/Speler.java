@@ -49,6 +49,11 @@ public class Speler implements ISpeler {
     }
 
     @Override
+    public void verwijderKaartUitHand(Kaart kaart) {
+        this.hand.remove(this.hand.indexOf(kaart));
+    }
+
+    @Override
     public void updateTussenstand(HashMap<String, Integer> tussenstand) {
         this.spelerController.toonTussenstandRonde(tussenstand);
     }
