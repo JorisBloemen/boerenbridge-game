@@ -47,11 +47,15 @@ public class Spel implements ISpel {
      * @param scores de scores aan het eind van de gespeelde ronde.
      */
     private void berekenTussenstand(HashMap<ISpeler, Integer> scores){
-        for (Map.Entry<ISpeler, Integer> entry : this.tussenstand.entrySet())
-            entry.setValue(entry.getValue() + scores.get(entry.getKey()));
-        System.out.println("\n--- Tussenstand ---");
+        HashMap<String, Integer> tmpScore = new HashMap<String, Integer>();
+        for (Map.Entry<ISpeler, Integer> entry : this.tussenstand.entrySet()) {
+            int newScore = entry.getValue() + scores.get(entry.getKey());
+            entry.setValue(newScore);
+            tmpScore.put(entry.getKey().geefNaam(), newScore);
+        }
+
         for (ISpeler speler : this.spelers)
-            speler.updateScore(this.tussenstand.get(speler));
+            speler.updateTussenstand(new HashMap<String, Integer>(tmpScore));
     }
 
     /**
