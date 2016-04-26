@@ -5,7 +5,6 @@ import nl.han.ica.ap.boerenbridge.kaart.KaartType;
 import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.IKaart;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Het algoritme dat een willekeurige geldige kaart bepaald.

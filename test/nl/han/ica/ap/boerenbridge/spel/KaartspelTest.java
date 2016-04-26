@@ -1,15 +1,15 @@
 package nl.han.ica.ap.boerenbridge.spel;
 
-import org.junit.After;
+import nl.han.ica.ap.boerenbridge.kaart.Kaart;
+import nl.han.ica.ap.boerenbridge.kaart.KaartType;
+import nl.han.ica.ap.boerenbridge.kaart.KaartWaarde;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
-import nl.han.ica.ap.boerenbridge.kaart.*;
-
-import static nl.han.ica.ap.boerenbridge.kaart.KaartType.*;
-import static nl.han.ica.ap.boerenbridge.kaart.KaartWaarde.*;
+import static nl.han.ica.ap.boerenbridge.kaart.KaartType.SCHOPPEN;
+import static nl.han.ica.ap.boerenbridge.kaart.KaartWaarde.TWEE;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class KaartspelTest {
 

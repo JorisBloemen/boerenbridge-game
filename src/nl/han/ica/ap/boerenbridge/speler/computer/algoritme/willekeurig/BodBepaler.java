@@ -2,9 +2,10 @@ package nl.han.ica.ap.boerenbridge.speler.computer.algoritme.willekeurig;
 
 import nl.han.ica.ap.boerenbridge.kaart.Kaart;
 import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.IBieding;
-import static nl.han.ica.ap.boerenbridge.kaart.KaartType.*;
 
 import java.util.ArrayList;
+
+import static nl.han.ica.ap.boerenbridge.kaart.KaartType.SCHOPPEN;
 
 /**
  * Bepaald een bod aan de hand van het algoritme.

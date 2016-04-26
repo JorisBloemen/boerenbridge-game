@@ -1,14 +1,13 @@
 package nl.han.ica.ap.boerenbridge.kaart;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-// import enums
-import static nl.han.ica.ap.boerenbridge.kaart.KaartType.*;
-import static nl.han.ica.ap.boerenbridge.kaart.KaartWaarde.*;
+import static nl.han.ica.ap.boerenbridge.kaart.KaartType.HARTEN;
+import static nl.han.ica.ap.boerenbridge.kaart.KaartWaarde.VIER;
+import static org.junit.Assert.assertEquals;
 
-import static org.junit.Assert.*;
+// import enums
 
 public class KaartTest {
 

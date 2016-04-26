@@ -10,7 +10,6 @@ import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.willekeurig.BodBepal
 import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.willekeurig.KaartBepaler;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 /**

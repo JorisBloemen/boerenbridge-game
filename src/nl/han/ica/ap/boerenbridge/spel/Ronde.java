@@ -2,7 +2,10 @@ package nl.han.ica.ap.boerenbridge.spel;
 
 import nl.han.ica.ap.boerenbridge.speler.ISpeler;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Deel de kaarten. Vraag spelers om biedingen, speel de slagen en bepaal de

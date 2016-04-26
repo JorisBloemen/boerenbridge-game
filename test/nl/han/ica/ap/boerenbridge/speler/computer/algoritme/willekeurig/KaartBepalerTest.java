@@ -1,15 +1,15 @@
 package nl.han.ica.ap.boerenbridge.speler.computer.algoritme.willekeurig;
 
 import nl.han.ica.ap.boerenbridge.kaart.Kaart;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
 import static nl.han.ica.ap.boerenbridge.kaart.KaartType.*;
 import static nl.han.ica.ap.boerenbridge.kaart.KaartWaarde.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class KaartBepalerTest {
 

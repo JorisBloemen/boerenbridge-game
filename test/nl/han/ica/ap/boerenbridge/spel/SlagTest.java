@@ -1,18 +1,16 @@
 package nl.han.ica.ap.boerenbridge.spel;
 
 import nl.han.ica.ap.boerenbridge.kaart.Kaart;
-import static nl.han.ica.ap.boerenbridge.kaart.KaartType.*;
-import static nl.han.ica.ap.boerenbridge.kaart.KaartWaarde.*;
-
 import nl.han.ica.ap.boerenbridge.speler.ISpeler;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static org.junit.Assert.*;
+import static nl.han.ica.ap.boerenbridge.kaart.KaartType.*;
+import static nl.han.ica.ap.boerenbridge.kaart.KaartWaarde.*;
+import static org.junit.Assert.assertEquals;
 
 public class SlagTest {
 

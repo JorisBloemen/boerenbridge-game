@@ -3,11 +3,11 @@ package nl.han.ica.ap.boerenbridge.spel;
 import nl.han.ica.ap.boerenbridge.kaart.Kaart;
 import nl.han.ica.ap.boerenbridge.speler.ISpeler;
 
-import static nl.han.ica.ap.boerenbridge.kaart.KaartType.*;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import static nl.han.ica.ap.boerenbridge.kaart.KaartType.SCHOPPEN;
 
 /**
  * Vraagt spelers om kaarten en bepaald de winnaar van de slag.

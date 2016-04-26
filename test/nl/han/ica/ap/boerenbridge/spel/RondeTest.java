@@ -2,7 +2,6 @@ package nl.han.ica.ap.boerenbridge.spel;
 
 import nl.han.ica.ap.boerenbridge.kaart.Kaart;
 import nl.han.ica.ap.boerenbridge.speler.ISpeler;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,7 +10,7 @@ import java.util.HashMap;
 
 import static nl.han.ica.ap.boerenbridge.kaart.KaartType.*;
 import static nl.han.ica.ap.boerenbridge.kaart.KaartWaarde.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class RondeTest {
 
