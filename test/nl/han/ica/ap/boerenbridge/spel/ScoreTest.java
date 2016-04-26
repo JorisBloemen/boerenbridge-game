@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.junit.Assert.*;
 
@@ -21,6 +22,11 @@ public class ScoreTest {
             public int doeBieding() { return 0; }
             public void ontvangKaart(Kaart kaart) {}
             public Kaart geefKaart(ArrayList<Kaart> kaarten) { return null; }
+            public void verwijderKaartUitHand(Kaart kaart) { }
+            public void updateRondeTussenstand(
+                    HashMap<String, Integer> tussenstand) { }
+            public void updateSlagTussenstand(
+                    HashMap<String, int[]> tussenstand) { }
             public void updateScore(int score) {}
             public ArrayList toonHand() { return null; }
             public void bekijkBord(ArrayList<Kaart> bord) {}

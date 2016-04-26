@@ -37,11 +37,6 @@ public class SpelerControllerConsole implements ISpelerController {
         }
     }
 
-    private void printHashMapPlayerScore(HashMap<String, Integer> score) {
-        for (Map.Entry<String, Integer> e : score.entrySet())
-            System.out.println(e.getKey() + ": " + e.getValue());
-    }
-
     /**
      * Vraag de speler een integer op te geven.
      * @return De opgegeven integer.
@@ -85,14 +80,19 @@ public class SpelerControllerConsole implements ISpelerController {
     public void toonTussenstandRonde(HashMap<String, Integer> tussenstand) {
         // TODO: 20160419: Ook het nummer van de ronde laten zien?
         System.out.println("Tussenstand ronde:");
-        printHashMapPlayerScore(tussenstand);
+        for (Map.Entry<String, Integer> e : tussenstand.entrySet())
+            System.out.println(e.getKey() + ": " + e.getValue());
     }
 
     @Override
-    public void toonTussenstandSlag(HashMap<String, Integer> tussenstand) {
+    public void toonTussenstandSlag(HashMap<String, int[]> tussenstand) {
         // TODO: 20160419: Ook het bod van de speler laten zien?
         System.out.println("Tussenstand gewonnen slagen:");
-        printHashMapPlayerScore(tussenstand);
+        System.out.println("Speler: bod | score");
+        for (Map.Entry<String, int[]> e : tussenstand.entrySet())
+            System.out.println(
+                    e.getKey() + ": "
+                            + e.getValue()[0] + " | " + e.getValue()[1]);
     }
 
     @Override

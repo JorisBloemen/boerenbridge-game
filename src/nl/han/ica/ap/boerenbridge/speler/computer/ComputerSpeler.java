@@ -10,6 +10,8 @@ import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.willekeurig.BodBepal
 import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.willekeurig.KaartBepaler;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * De computerspeler beslist zelf een bod en welke kaarten gespeeld worden aan
@@ -57,9 +59,18 @@ public class ComputerSpeler implements ISpeler {
                 this.hand, bord);
     }
 
-    // TODO: 2016-04-26: Nog implementeren, andere strategie op basis van voor of achterstand?
     @Override
-    public void updateScore(int score) { }
+    public void verwijderKaartUitHand(Kaart kaart) {
+        this.hand.remove(this.hand.indexOf(kaart));
+    }
+
+    // TODO: 2016-04-26: Stratigie aanpassen op basis van de tussenstand.
+    @Override
+    public void updateRondeTussenstand(HashMap<String, Integer> tussenstand) { }
+
+    // TODO: 2016-04-26: Stratigie aanpassen op basis van de tussenstand.
+    @Override
+    public void updateSlagTussenstand(HashMap<String, int[]> tussenstand) { }
 
     @Override
     public ArrayList<Kaart> toonHand() {

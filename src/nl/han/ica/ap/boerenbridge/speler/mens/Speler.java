@@ -55,8 +55,13 @@ public class Speler implements ISpeler {
     }
 
     @Override
-    public void updateTussenstand(HashMap<String, Integer> tussenstand) {
+    public void updateRondeTussenstand(HashMap<String, Integer> tussenstand) {
         this.spelerController.toonTussenstandRonde(tussenstand);
+    }
+
+    @Override
+    public void updateSlagTussenstand(HashMap<String, int[]> tussenstand) {
+        this.spelerController.toonTussenstandSlag(tussenstand);
     }
 
     @Override

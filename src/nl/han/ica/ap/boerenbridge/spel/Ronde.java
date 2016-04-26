@@ -75,12 +75,24 @@ public class Ronde {
         return bieding;
     }
 
+    /**
+     * Checked of het bod niet hoger is dan het aantal kaarten waarmee gespeeld
+     * wordt.
+     * @param bieding Het bod van de speler.
+     * @return True of False
+     */
     private boolean biedingNietHogerDanAantalSlagen(int bieding) {
-        if (bieding > this.aantalSlagen)
-                return false;
-        return true;
+        return bieding <= this.aantalSlagen;
     }
 
+    /**
+     * Controleerd of de totale som van de biedingen niet gelijk is aan het
+     * aantal kaarten.
+     * @param bieding Het bod van de speler.
+     * @param totaleBieding De som van de biedingen tot nu toe.
+     * @param speler De speler die het bod uit brengt.
+     * @return True of Fasle
+     */
     private boolean somOngelijkAanAantalSlagen(int bieding,
                                                int totaleBieding,
                                                ISpeler speler) {
@@ -99,9 +111,22 @@ public class Ronde {
             Slag slag = new Slag(new ArrayList<ISpeler>(this.spelers));
             ISpeler slagWinnaar = slag.speelSlag();
             this.scores.get(slagWinnaar).winSlag();
+            geefTussenstandDoor();
             Collections.rotate(this.spelers,
                     -(this.spelers.indexOf(slagWinnaar)));
         }
+    }
+
+    /**
+     * Geeft de tussenstand door aan de spelers.
+     */
+    private void geefTussenstandDoor() {
+        HashMap<String, int[]> tussenstand = new HashMap<String, int[]>();
+        for (ISpeler speler : this.spelers)
+            tussenstand.put(speler.geefNaam(),
+                    this.scores.get(speler).getValue());
+        for (ISpeler speler : this.spelers)
+            speler.updateSlagTussenstand(tussenstand);
     }
 
     /**

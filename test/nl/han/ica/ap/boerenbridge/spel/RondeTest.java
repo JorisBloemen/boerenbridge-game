@@ -27,6 +27,11 @@ public class RondeTest {
             public void ontvangKaart(Kaart kaart) { }
             public Kaart geefKaart(ArrayList<Kaart> kaarten)
             { return new Kaart(SCHOPPEN, VIER); }
+            public void verwijderKaartUitHand(Kaart kaart) { }
+            public void updateRondeTussenstand(
+                    HashMap<String, Integer> tussenstand) { }
+            public void updateSlagTussenstand(
+                    HashMap<String, int[]> tussenstand) { }
             public void updateScore(int score) { }
             public ArrayList toonHand() { return null; }
             public void bekijkBord(ArrayList<Kaart> bord) {}
@@ -41,6 +46,11 @@ public class RondeTest {
             public void updateScore(int score) { }
             public ArrayList toonHand() { return null; }
             public void bekijkBord(ArrayList<Kaart> bord) {}
+            public void verwijderKaartUitHand(Kaart kaart) { }
+            public void updateRondeTussenstand(
+                    HashMap<String, Integer> tussenstand) { }
+            public void updateSlagTussenstand(
+                    HashMap<String, int[]> tussenstand) { }
         };
 
         this.speler3 = new ISpeler() {
@@ -52,6 +62,11 @@ public class RondeTest {
             public void updateScore(int score) { }
             public ArrayList toonHand() { return null; }
             public void bekijkBord(ArrayList<Kaart> bord) {}
+            public void verwijderKaartUitHand(Kaart kaart) { }
+            public void updateRondeTussenstand(
+                    HashMap<String, Integer> tussenstand) { }
+            public void updateSlagTussenstand(
+                    HashMap<String, int[]> tussenstand) { }
         };
 
         this.speler4 = new ISpeler() {
@@ -63,6 +78,11 @@ public class RondeTest {
             public void updateScore(int score) { }
             public ArrayList toonHand() { return null; }
             public void bekijkBord(ArrayList<Kaart> bord) {}
+            public void verwijderKaartUitHand(Kaart kaart) { }
+            public void updateRondeTussenstand(
+                    HashMap<String, Integer> tussenstand) { }
+            public void updateSlagTussenstand(
+                    HashMap<String, int[]> tussenstand) { }
         };
 
         this.speler5 = new ISpeler() {
@@ -74,6 +94,11 @@ public class RondeTest {
             public void updateScore(int score) { }
             public ArrayList toonHand() { return null; }
             public void bekijkBord(ArrayList<Kaart> bord) {}
+            public void verwijderKaartUitHand(Kaart kaart) { }
+            public void updateRondeTussenstand(
+                    HashMap<String, Integer> tussenstand) { }
+            public void updateSlagTussenstand(
+                    HashMap<String, int[]> tussenstand) { }
         };
 
         this.spelers = new ArrayList<ISpeler>();

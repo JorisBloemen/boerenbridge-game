@@ -55,7 +55,8 @@ public class Spel implements ISpel {
         }
 
         for (ISpeler speler : this.spelers)
-            speler.updateTussenstand(new HashMap<String, Integer>(tmpScore));
+            speler.updateRondeTussenstand(
+                    new HashMap<String, Integer>(tmpScore));
     }
 
     /**

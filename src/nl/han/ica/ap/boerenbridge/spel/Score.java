@@ -2,11 +2,13 @@ package nl.han.ica.ap.boerenbridge.spel;
 
 import nl.han.ica.ap.boerenbridge.speler.ISpeler;
 
+import java.util.Map;
+
 /**
  * Een score object zit gekoppeld aan een ISpeler, bewaard het bod van de
  * speler, houd het aantal gewonnen slagen bij en kan de score berekenen.
  */
-public class Score {
+public class Score implements Map.Entry<ISpeler, int[]> {
     // TODO: 2016-03-22: We doen niks met de speler. Verwijder of implementeren met vergelijk functie.
     private ISpeler speler;
     private int bod;
@@ -14,8 +16,9 @@ public class Score {
 
     /**
      * Initialiseert het score object.
+     *
      * @param speler De speler waar de score bij hoort.
-     * @param bod Het bod dat de speler heeft gedaan.
+     * @param bod    Het bod dat de speler heeft gedaan.
      */
     public Score(ISpeler speler, int bod) {
         this.speler = speler;
@@ -33,6 +36,7 @@ public class Score {
     /**
      * Bereken de score aan de hand van het bod van de speler en het aantal
      * gewonnen slagen.
+     *
      * @return De score van de speler in de huidige ronde.
      */
     public int berekenScore() {
@@ -41,4 +45,17 @@ public class Score {
         else
             return Math.abs(this.bod - this.gewonnenSlagen) * -2;
     }
+
+    @Override
+    public ISpeler getKey() {
+        return this.speler;
+    }
+
+    @Override
+    public int[] getValue() {
+        return new int[]{ this.bod, this.gewonnenSlagen };
+    }
+
+    @Override
+    public int[] setValue(int[] value) { return null; }
 }
