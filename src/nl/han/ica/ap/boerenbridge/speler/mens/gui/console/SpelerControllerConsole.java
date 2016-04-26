@@ -1,6 +1,7 @@
-package nl.han.ica.ap.boerenbridge.speler.mens;
+package nl.han.ica.ap.boerenbridge.speler.mens.gui.console;
 
 import nl.han.ica.ap.boerenbridge.kaart.Kaart;
+import nl.han.ica.ap.boerenbridge.speler.mens.ISpelerController;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -53,9 +54,9 @@ public class SpelerControllerConsole implements ISpelerController {
         try {
             bodstr = br.readLine();
         } catch (java.io.IOException ioe) {
-            System.err.println("io error: " + ioe.toString());
+            ioe.printStackTrace();
+            // Crash
         }
-
         return Integer.parseInt(bodstr);
     }
 
@@ -92,5 +93,11 @@ public class SpelerControllerConsole implements ISpelerController {
         // TODO: 20160419: Ook het bod van de speler laten zien?
         System.out.println("Tussenstand gewonnen slagen:");
         printHashMapPlayerScore(tussenstand);
+    }
+
+    @Override
+    public void bekijkBord(ArrayList<Kaart> bord) {
+        System.out.println("Gespeelde kaarten:");
+        toonKaarten(bord);
     }
 }

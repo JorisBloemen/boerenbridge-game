@@ -43,4 +43,10 @@ public interface ISpelerController {
      * @param tussenstand Het aantal slagen dat elke speler gewonnen heeft.
      */
     void toonTussenstandSlag(HashMap<String, Integer> tussenstand);
+
+    /**
+     * Laat de speler zien welke kaarten deze ronde gespeeld zijn.
+     * @param bord De kaarten die gespeeld zijn aan het eind van de ronde.
+     */
+    void bekijkBord(ArrayList<Kaart> bord);
 }
