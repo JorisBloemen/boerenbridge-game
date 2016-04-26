@@ -39,12 +39,17 @@ public interface ISpeler {
      */
     Kaart geefKaart(ArrayList<Kaart> kaarten);
 
-    // TODO: 2016-03-22: Speler kan nu alleen zijn eigen score zien, niet die van zijn medespelers.
+    /**
+     * Verwijderd de kaart uit de hand van de speler.
+     * @param kaart De kaart die de speler dient te verwijderen.
+     */
+    void verwijderKaartUitHand(Kaart kaart);
+
     /**
      * Geef de tussenstand door aan de speler.
-     * @param score De score van de speler.
+     * @param tussenstand De score per speler.
      */
-    void updateScore(int score);
+    void updateTussenstand(HashMap<String, Integer> tussenstand);
 
     /**
      * Geef alle kaarten in de hand van de speler terug.
