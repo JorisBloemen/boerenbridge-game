@@ -11,6 +11,7 @@ import java.util.HashMap;
 import static nl.han.ica.ap.boerenbridge.kaart.KaartType.*;
 import static nl.han.ica.ap.boerenbridge.kaart.KaartWaarde.*;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class SlagTest {
 
@@ -20,83 +21,103 @@ public class SlagTest {
     @Before
     public void setUp() throws Exception {
         this.speler1 = new ISpeler() {
+            Kaart kaart = new Kaart(SCHOPPEN, VIER);
             public String geefNaam() { return ""; }
             public int doeBieding() { return 0; }
             public void ontvangKaart(Kaart kaart) { }
-            public Kaart geefKaart(ArrayList<Kaart> kaarten)
-            { return new Kaart(SCHOPPEN, VIER); }
-            public void verwijderKaartUitHand(Kaart kaart) { }
+            public Kaart geefKaart(ArrayList<Kaart> kaarten) { return kaart; }
+            public Kaart verwijderKaartUitHand(Kaart kaart) { return kaart; }
             public void updateRondeTussenstand(
                     HashMap<String, Integer> tussenstand) { }
             public void updateSlagTussenstand(
                     HashMap<String, int[]> tussenstand) { }
             public void updateScore(int score) { }
-            public ArrayList toonHand() { return null; }
+            public ArrayList<Kaart> toonHand() {
+                ArrayList<Kaart> hand = new ArrayList<Kaart>();
+                hand.add(kaart);
+                return hand;
+            }
             public void bekijkBord(ArrayList<Kaart> bord) {}
         };
 
         this.speler2 = new ISpeler() {
+            Kaart kaart = new Kaart(SCHOPPEN, ACHT);
             public String geefNaam() { return ""; }
             public int doeBieding() { return 0; }
             public void ontvangKaart(Kaart kaart) { }
-            public Kaart geefKaart(ArrayList<Kaart> kaarten)
-            { return new Kaart(SCHOPPEN, ACHT); }
-            public void updateScore(int score) { }
-            public ArrayList toonHand() { return null; }
-            public void bekijkBord(ArrayList<Kaart> bord) {}
+            public Kaart geefKaart(ArrayList<Kaart> kaarten) { return kaart; }
+            public Kaart verwijderKaartUitHand(Kaart kaart) { return kaart; }
             public void updateRondeTussenstand(
                     HashMap<String, Integer> tussenstand) { }
             public void updateSlagTussenstand(
                     HashMap<String, int[]> tussenstand) { }
-            public void verwijderKaartUitHand(Kaart kaart) { }
+            public void updateScore(int score) { }
+            public ArrayList<Kaart> toonHand() {
+                ArrayList<Kaart> hand = new ArrayList<Kaart>();
+                hand.add(kaart);
+                return hand;
+            }
+            public void bekijkBord(ArrayList<Kaart> bord) {}
         };
 
         this.speler3 = new ISpeler() {
+            Kaart kaart = new Kaart(HARTEN, VIER);
             public String geefNaam() { return ""; }
             public int doeBieding() { return 0; }
             public void ontvangKaart(Kaart kaart) { }
-            public Kaart geefKaart(ArrayList<Kaart> kaarten)
-            { return new Kaart(HARTEN, VIER); }
-            public void updateScore(int score) { }
-            public ArrayList toonHand() { return null; }
-            public void bekijkBord(ArrayList<Kaart> bord) {}
+            public Kaart geefKaart(ArrayList<Kaart> kaarten) { return kaart; }
+            public Kaart verwijderKaartUitHand(Kaart kaart) { return kaart; }
             public void updateRondeTussenstand(
                     HashMap<String, Integer> tussenstand) { }
             public void updateSlagTussenstand(
                     HashMap<String, int[]> tussenstand) { }
-            public void verwijderKaartUitHand(Kaart kaart) { }
+            public void updateScore(int score) { }
+            public ArrayList<Kaart> toonHand() {
+                ArrayList<Kaart> hand = new ArrayList<Kaart>();
+                hand.add(kaart);
+                return hand;
+            }
+            public void bekijkBord(ArrayList<Kaart> bord) {}
         };
 
         this.speler4 = new ISpeler() {
+            Kaart kaart = new Kaart(RUITEN, VIER);
             public String geefNaam() { return ""; }
             public int doeBieding() { return 0; }
             public void ontvangKaart(Kaart kaart) { }
-            public Kaart geefKaart(ArrayList<Kaart> kaarten)
-            { return new Kaart(RUITEN, VIER); }
-            public void updateScore(int score) { }
-            public ArrayList toonHand() { return null; }
-            public void bekijkBord(ArrayList<Kaart> bord) {}
+            public Kaart geefKaart(ArrayList<Kaart> kaarten) { return kaart; }
+            public Kaart verwijderKaartUitHand(Kaart kaart) { return kaart; }
             public void updateRondeTussenstand(
                     HashMap<String, Integer> tussenstand) { }
             public void updateSlagTussenstand(
                     HashMap<String, int[]> tussenstand) { }
-            public void verwijderKaartUitHand(Kaart kaart) { }
+            public void updateScore(int score) { }
+            public ArrayList<Kaart> toonHand() {
+                ArrayList<Kaart> hand = new ArrayList<Kaart>();
+                hand.add(kaart);
+                return hand;
+            }
+            public void bekijkBord(ArrayList<Kaart> bord) {}
         };
 
         this.speler5 = new ISpeler() {
+            Kaart kaart = new Kaart(RUITEN, ZEVEN);
             public String geefNaam() { return ""; }
             public int doeBieding() { return 0; }
             public void ontvangKaart(Kaart kaart) { }
-            public Kaart geefKaart(ArrayList<Kaart> kaarten)
-            { return new Kaart(RUITEN, ZEVEN); }
-            public void updateScore(int score) { }
-            public ArrayList toonHand() { return null; }
-            public void bekijkBord(ArrayList<Kaart> bord) {}
+            public Kaart geefKaart(ArrayList<Kaart> kaarten) { return kaart; }
+            public Kaart verwijderKaartUitHand(Kaart kaart) { return kaart; }
             public void updateRondeTussenstand(
                     HashMap<String, Integer> tussenstand) { }
             public void updateSlagTussenstand(
                     HashMap<String, int[]> tussenstand) { }
-            public void verwijderKaartUitHand(Kaart kaart) { }
+            public void updateScore(int score) { }
+            public ArrayList<Kaart> toonHand() {
+                ArrayList<Kaart> hand = new ArrayList<Kaart>();
+                hand.add(kaart);
+                return hand;
+            }
+            public void bekijkBord(ArrayList<Kaart> bord) {}
         };
 
         this.spelers = new ArrayList<ISpeler>();

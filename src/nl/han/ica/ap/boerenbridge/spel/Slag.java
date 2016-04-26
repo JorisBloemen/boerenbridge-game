@@ -12,7 +12,7 @@ import static nl.han.ica.ap.boerenbridge.kaart.KaartType.SCHOPPEN;
 /**
  * Vraagt spelers om kaarten en bepaald de winnaar van de slag.
  */
-public class Slag {
+class Slag {
     private ArrayList<ISpeler> spelers;
     private HashMap<ISpeler, Kaart> gespeeldeKaarten;
     private Kaart eersteKaart;
@@ -23,7 +23,7 @@ public class Slag {
      * @param spelers De deelnemende spelers aan de slag met de beginnende
      *                speler op de eerste plek.
      */
-    public Slag(ArrayList<ISpeler> spelers){
+    Slag(ArrayList<ISpeler> spelers){
         this.spelers = spelers;
         this.gespeeldeKaarten = new HashMap<ISpeler, Kaart>();
     }
@@ -32,7 +32,7 @@ public class Slag {
      * Speel de slag. Vraag kaarten van de spelers en bepaal de winnaar.
      * @return De speler met de beste kaart.
      */
-    public ISpeler speelSlag() {
+    ISpeler speelSlag() {
         vraagKaarten();
         return bepaalWinnaar();
     }
@@ -46,9 +46,7 @@ public class Slag {
      */
     private void vraagKaarten() {
         for (ISpeler speler : this.spelers) {
-            System.out.println(speler.geefNaam() + ":");
-            Kaart kaart = speler.geefKaart(
-                    new ArrayList<Kaart>(this.gespeeldeKaarten.values()));
+            Kaart kaart = vraagValideKaart(speler);
             this.gespeeldeKaarten.put(speler, kaart);
             if (speler == this.spelers.get(0))
                 this.eersteKaart = kaart;
@@ -62,9 +60,9 @@ public class Slag {
             kaart = speler.geefKaart(
                     new ArrayList<Kaart>(this.gespeeldeKaarten.values()));
             if(speler == this.spelers.get(0))
-                return kaart;
+                return speler.verwijderKaartUitHand(kaart);
         } while (!kaartVoldoetAanBediening(hand, kaart));
-        return kaart;
+        return speler.verwijderKaartUitHand(kaart);
     }
 
     private Boolean kaartVoldoetAanBediening(ArrayList<Kaart> hand, Kaart kaart){

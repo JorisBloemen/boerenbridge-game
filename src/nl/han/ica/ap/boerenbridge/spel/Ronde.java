@@ -11,7 +11,7 @@ import java.util.Map;
  * Deel de kaarten. Vraag spelers om biedingen, speel de slagen en bepaal de
  * score per speler.
  */
-public class Ronde {
+class Ronde {
     private Kaartspel kaartspel;
     private ArrayList<ISpeler> spelers;
     private int aantalSlagen;
@@ -24,7 +24,7 @@ public class Ronde {
      *                speler op de eerste plek.
      * @param aantalSlagen Het aantal slagen die in deze ronde gespeelt worden.
      */
-    public Ronde(ArrayList<ISpeler> spelers, int aantalSlagen) {
+    Ronde(ArrayList<ISpeler> spelers, int aantalSlagen) {
         this.spelers = spelers;
         this.aantalSlagen = aantalSlagen;
         this.kaartspel = new Kaartspel();
@@ -37,7 +37,7 @@ public class Ronde {
      * spelers, speelt de slagen in de ronde en berekend de scores per speler.
      * @return De score per speler.
      */
-    public HashMap<ISpeler, Integer> speelRonde() {
+    HashMap<ISpeler, Integer> speelRonde() {
         deelKaarten();
         vraagBiedingen();
         speelSlagen();
@@ -62,10 +62,8 @@ public class Ronde {
         // TODO: 2016-04-11: nog testen
         int totaleBieding = 0;
 
-        for (ISpeler speler : this.spelers) {
-            System.out.println(speler.geefNaam() + ":");
+        for (ISpeler speler : this.spelers)
             totaleBieding += vraagValideBieding(speler, totaleBieding);
-        }
     }
 
     private int vraagValideBieding(ISpeler speler, int totaleBieding) {
@@ -129,7 +127,8 @@ public class Ronde {
             tussenstand.put(speler.geefNaam(),
                     this.scores.get(speler).getValue());
         for (ISpeler speler : this.spelers)
-            speler.updateSlagTussenstand(tussenstand);
+            speler.updateSlagTussenstand(
+                    new HashMap<String, int[]>(tussenstand));
     }
 
     /**

@@ -8,7 +8,7 @@ import java.util.Map;
  * Een score object zit gekoppeld aan een ISpeler, bewaard het bod van de
  * speler, houd het aantal gewonnen slagen bij en kan de score berekenen.
  */
-public class Score implements Map.Entry<ISpeler, int[]> {
+class Score implements Map.Entry<ISpeler, int[]> {
     // TODO: 2016-03-22: We doen niks met de speler. Verwijder of implementeren met vergelijk functie.
     private ISpeler speler;
     private int bod;
@@ -20,7 +20,7 @@ public class Score implements Map.Entry<ISpeler, int[]> {
      * @param speler De speler waar de score bij hoort.
      * @param bod    Het bod dat de speler heeft gedaan.
      */
-    public Score(ISpeler speler, int bod) {
+    Score(ISpeler speler, int bod) {
         this.speler = speler;
         this.bod = bod;
         this.gewonnenSlagen = 0;
@@ -29,7 +29,7 @@ public class Score implements Map.Entry<ISpeler, int[]> {
     /**
      * Verhoog het aantal gewonnen slagen met 1.
      */
-    public void winSlag() {
+    void winSlag() {
         this.gewonnenSlagen++;
     }
 
@@ -39,7 +39,7 @@ public class Score implements Map.Entry<ISpeler, int[]> {
      *
      * @return De score van de speler in de huidige ronde.
      */
-    public int berekenScore() {
+    int berekenScore() {
         if (this.gewonnenSlagen == this.bod)
             return 10 + this.gewonnenSlagen * 2;
         else

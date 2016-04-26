@@ -59,8 +59,8 @@ public class ComputerSpeler implements ISpeler {
     }
 
     @Override
-    public void verwijderKaartUitHand(Kaart kaart) {
-        this.hand.remove(this.hand.indexOf(kaart));
+    public Kaart verwijderKaartUitHand(Kaart kaart) {
+        return this.hand.remove(this.hand.indexOf(kaart));
     }
 
     // TODO: 2016-04-26: Stratigie aanpassen op basis van de tussenstand.

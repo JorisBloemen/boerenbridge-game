@@ -48,8 +48,8 @@ public class Speler implements ISpeler {
     }
 
     @Override
-    public void verwijderKaartUitHand(Kaart kaart) {
-        this.hand.remove(this.hand.indexOf(kaart));
+    public Kaart verwijderKaartUitHand(Kaart kaart) {
+        return this.hand.remove(this.hand.indexOf(kaart));
     }
 
     @Override

@@ -10,13 +10,13 @@ import java.util.Collections;
 /**
  * Een kaartspel bestaat uit 52 kaarten, bestaande uit 4 types van 13 kaarten.
  */
-public class Kaartspel {
+class Kaartspel {
     private ArrayList<Kaart> kaartspel;
 
     /**
      * Initialiseert het kaartspel.
      */
-    public Kaartspel() {
+    Kaartspel() {
         this.kaartspel = new ArrayList<Kaart>();
         for (KaartType kaartType : KaartType.values())
             for (KaartWaarde kaartWaarde : KaartWaarde.values())
@@ -26,7 +26,7 @@ public class Kaartspel {
     /**
      *  Verranderd de volgorde van de kaarten in het kaartspel.
      */
-    public void schud() {
+    void schud() {
         Collections.shuffle(this.kaartspel);
     }
 
@@ -35,7 +35,7 @@ public class Kaartspel {
      * verwijderd deze uit het kaartspel.
      * @return De getrokken kaart.
      */
-    public Kaart trekKaart() {
+    Kaart trekKaart() {
         return this.kaartspel.remove(0);
     }
 }

@@ -43,7 +43,7 @@ public interface ISpeler {
      * Verwijderd de kaart uit de hand van de speler.
      * @param kaart De kaart die de speler dient te verwijderen.
      */
-    void verwijderKaartUitHand(Kaart kaart);
+    Kaart verwijderKaartUitHand(Kaart kaart);
 
     /**
      * Ontvang de tussenstand in punten per speler.
