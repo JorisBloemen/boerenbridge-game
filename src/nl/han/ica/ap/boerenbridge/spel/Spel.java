@@ -45,7 +45,7 @@ public class Spel implements ISpel {
      * Start het spel en speel 19 ronden.
      */
     private void speelSpel() {
-        roteerNaarRandomSpeler();
+        //roteerNaarRandomSpeler();
         for (; this.beurt < 19; this.beurt++) {
             Ronde ronde = new Ronde(
                     new ArrayList<ISpeler>(this.spelers), bepaalSlagen());
