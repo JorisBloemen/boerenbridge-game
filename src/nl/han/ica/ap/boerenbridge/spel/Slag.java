@@ -65,6 +65,11 @@ class Slag {
         }
     }
 
+    /**
+     * Vraag een valide kaart aan de speler.
+     * @param speler De speler aan wie de kaart gevraagd moet worden.
+     * @return De valide tespeelde kaart.
+     */
     private Kaart vraagValideKaart(ISpeler speler) {
         Kaart kaart;
         ArrayList<Kaart> hand = speler.toonHand();
