@@ -28,7 +28,8 @@ public class ScoreTest {
                     HashMap<String, int[]> tussenstand) { }
             public void updateScore(int score) {}
             public ArrayList<Kaart> toonHand() { return null; }
-            public void bekijkBord(ArrayList<Kaart> bord) {}
+            public void bekijkBord(ArrayList<String> spelerNamen,
+                                   HashMap<String, Kaart> bord) {}
         };
 
         this.score = new Score(speler, 4);

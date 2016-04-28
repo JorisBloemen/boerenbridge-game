@@ -77,8 +77,12 @@ public class ComputerSpeler implements ISpeler {
     }
 
     @Override
-    public void bekijkBord(ArrayList<Kaart> bord) {
-        kaartteller.update(bord);
-        typeteller.update(bord);
+    public void bekijkBord(ArrayList<String> spelerNamen,
+                           HashMap<String, Kaart> bord) {
+        ArrayList<Kaart> gespeeldeKaarten = new ArrayList<Kaart>();
+        for (String spelerNaam : spelerNamen)
+            gespeeldeKaarten.add(bord.get(spelerNaam));
+        kaartteller.update(gespeeldeKaarten);
+        typeteller.update(gespeeldeKaarten);
     }
 }

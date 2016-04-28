@@ -68,8 +68,9 @@ public class Speler implements ISpeler {
     }
 
     @Override
-    public void bekijkBord(ArrayList<Kaart> bord) {
-        this.spelerController.bekijkBord(bord);
+    public void bekijkBord(ArrayList<String> spelerNamen,
+                           HashMap<String, Kaart> bord) {
+        this.spelerController.bekijkBord(spelerNamen, bord);
     }
 
     /**

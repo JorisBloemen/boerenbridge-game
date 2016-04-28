@@ -37,7 +37,8 @@ public class SlagTest {
                 hand.add(kaart);
                 return hand;
             }
-            public void bekijkBord(ArrayList<Kaart> bord) {}
+            public void bekijkBord(ArrayList<String> spelerNamen,
+                                   HashMap<String, Kaart> bord) {}
         };
 
         this.speler2 = new ISpeler() {
@@ -57,7 +58,8 @@ public class SlagTest {
                 hand.add(kaart);
                 return hand;
             }
-            public void bekijkBord(ArrayList<Kaart> bord) {}
+            public void bekijkBord(ArrayList<String> spelerNamen,
+                                   HashMap<String, Kaart> bord) {}
         };
 
         this.speler3 = new ISpeler() {
@@ -77,7 +79,8 @@ public class SlagTest {
                 hand.add(kaart);
                 return hand;
             }
-            public void bekijkBord(ArrayList<Kaart> bord) {}
+            public void bekijkBord(ArrayList<String> spelerNamen,
+                                   HashMap<String, Kaart> bord) {}
         };
 
         this.speler4 = new ISpeler() {
@@ -97,7 +100,8 @@ public class SlagTest {
                 hand.add(kaart);
                 return hand;
             }
-            public void bekijkBord(ArrayList<Kaart> bord) {}
+            public void bekijkBord(ArrayList<String> spelerNamen,
+                                   HashMap<String, Kaart> bord) {}
         };
 
         this.speler5 = new ISpeler() {
@@ -117,7 +121,8 @@ public class SlagTest {
                 hand.add(kaart);
                 return hand;
             }
-            public void bekijkBord(ArrayList<Kaart> bord) {}
+            public void bekijkBord(ArrayList<String> spelerNamen,
+                                   HashMap<String, Kaart> bord) {}
         };
 
         this.spelers = new ArrayList<ISpeler>();

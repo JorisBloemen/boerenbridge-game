@@ -67,7 +67,7 @@ public interface ISpeler {
     /**
      * De speler krijgt van het spel alle kaarten door die deze ronde gespeelt
      * zijn.
-     * @param bord De kaarten die gespeelt zijn.
+     * @param bord De kaarten die gespeelt zijn i.c.m. de naam van de speler.
      */
-    void bekijkBord(ArrayList<Kaart> bord);
+    void bekijkBord(ArrayList<String> spelerNamen, HashMap<String, Kaart> bord);
 }

@@ -20,8 +20,21 @@ public class SpelerControllerConsole implements ISpelerController {
      */
     private void toonKaarten(ArrayList<Kaart> kaarten) {
         for (Kaart kaart : kaarten)
-            System.out.println(kaart.getKaartType().toString() + " " +
-                    kaart.getKaartWaarde().toString());
+            System.out.println(kaart.getKaartType() + " " +
+                    kaart.getKaartWaarde());
+    }
+
+    /**
+     * Laat de kaarten met namen aan de gebruiker zien.
+     * @param spelerNamen De namen van de spelers (in correcte volgorde).
+     * @param kaarten De kaarten die bij de spelers horen.
+     */
+    private void toonKaarten(ArrayList<String> spelerNamen,
+                             HashMap<String, Kaart> kaarten) {
+        for (String spelerNaam : spelerNamen)
+            System.out.println(spelerNaam + ": "
+                    + kaarten.get(spelerNaam).getKaartType() + " "
+                    + kaarten.get(spelerNaam).getKaartWaarde());
     }
 
     /**
@@ -32,8 +45,8 @@ public class SpelerControllerConsole implements ISpelerController {
     private void toonKaartenMetIndex(ArrayList<Kaart> kaarten) {
         for (int i = 0; i < kaarten.size(); i++) {
             System.out.println(i + ") " +
-                    kaarten.get(i).getKaartType().toString() + " " +
-                    kaarten.get(i).getKaartWaarde().toString());
+                    kaarten.get(i).getKaartType() + " " +
+                    kaarten.get(i).getKaartWaarde());
         }
     }
 
@@ -107,9 +120,10 @@ public class SpelerControllerConsole implements ISpelerController {
     }
 
     @Override
-    public void bekijkBord(ArrayList<Kaart> bord) {
+    public void bekijkBord(ArrayList<String> spelerNamen,
+                           HashMap<String, Kaart> bord) {
         System.out.println("Gespeelde kaarten:");
-        toonKaarten(bord);
+        toonKaarten(spelerNamen, bord);
         System.out.println();
     }
 }

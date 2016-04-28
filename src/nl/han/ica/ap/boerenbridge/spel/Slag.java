@@ -42,11 +42,19 @@ class Slag {
      * Laat de spelers het bord zien.
      */
     private void toonBordAanSpelers() {
-        ArrayList<Kaart> bord = new ArrayList<Kaart>();
-        for (Map.Entry<ISpeler, Kaart> kaart : this.gespeeldeKaarten.entrySet())
-            bord.add(kaart.getValue());
+        HashMap<String, Kaart> bord = new HashMap<String, Kaart>();
+        for (Map.Entry<ISpeler, Kaart> entry : this.gespeeldeKaarten.entrySet())
+            bord.put(entry.getKey().geefNaam(), entry.getValue());
         for (ISpeler speler : this.spelers)
-            speler.bekijkBord(new ArrayList<Kaart>(bord));
+            speler.bekijkBord(geefSpelerNamen(),
+                    new HashMap<String, Kaart>(bord));
+    }
+
+    private ArrayList<String> geefSpelerNamen() {
+        ArrayList<String> spelerNamen = new ArrayList<String>();
+        for (ISpeler speler : this.spelers)
+            spelerNamen.add(speler.geefNaam());
+        return spelerNamen;
     }
 
     // TODO: 2016-11-4: nog testen

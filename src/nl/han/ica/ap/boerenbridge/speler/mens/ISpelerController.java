@@ -46,7 +46,8 @@ public interface ISpelerController {
 
     /**
      * Laat de speler zien welke kaarten deze ronde gespeeld zijn.
-     * @param bord De kaarten die gespeeld zijn aan het eind van de ronde.
+     * @param bord De kaarten die gespeeld zijn i.c.m. de naam van de speler
+     *             aan het eind van de ronde.
      */
-    void bekijkBord(ArrayList<Kaart> bord);
+    void bekijkBord(ArrayList<String> spelerNamen, HashMap<String, Kaart> bord);
 }
