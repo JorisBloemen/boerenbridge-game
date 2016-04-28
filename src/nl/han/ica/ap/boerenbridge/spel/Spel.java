@@ -34,9 +34,18 @@ public class Spel implements ISpel {
     }
 
     /**
+     * Roteer de lijst met deelnemers naar een willikeurige eerste speler.
+     */
+    private void roteerNaarRandomSpeler() {
+        Collections.rotate(
+                this.spelers, (int) (Math.random() * this.spelers.size()));
+    }
+
+    /**
      * Start het spel en speel 19 ronden.
      */
     private void speelSpel() {
+        roteerNaarRandomSpeler();
         for (; this.beurt < 19; this.beurt++) {
             Ronde ronde = new Ronde(
                     new ArrayList<ISpeler>(this.spelers), bepaalSlagen());
