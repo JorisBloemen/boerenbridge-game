@@ -52,10 +52,14 @@ public class ComputerSpeler implements ISpeler {
     }
 
     @Override
-    public Kaart geefKaart(ArrayList<Kaart> bord) {
-        kaartteller.update(bord);
+    public Kaart geefKaart(ArrayList<String> spelers,
+                           HashMap<String, Kaart> bord) {
+        ArrayList<Kaart> gespeeldeKaarten = new ArrayList<Kaart>();
+        for (String speler : spelers)
+            gespeeldeKaarten.add(bord.get(speler));
+        kaartteller.update(gespeeldeKaarten);
         return this.kaartAlgoritme.bepaalKaart(
-                this.hand, bord);
+                this.hand, gespeeldeKaarten);
     }
 
     @Override

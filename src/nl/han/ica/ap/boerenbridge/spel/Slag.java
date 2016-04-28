@@ -50,11 +50,39 @@ class Slag {
                     new HashMap<String, Kaart>(bord));
     }
 
+    /**
+     * Geeft de namen van de spelers terug.
+     * @return De namen van de spelers.
+     */
     private ArrayList<String> geefSpelerNamen() {
         ArrayList<String> spelerNamen = new ArrayList<String>();
         for (ISpeler speler : this.spelers)
             spelerNamen.add(speler.geefNaam());
         return spelerNamen;
+    }
+
+    private ArrayList<String> geefSpelerNamenDieGeweestZijn() {
+        ArrayList<String> spelerNamen = new ArrayList<String>();
+        for (ISpeler speler : this.spelers)
+            if (this.gespeeldeKaarten.containsKey(speler))
+                spelerNamen.add(speler.geefNaam());
+        return spelerNamen;
+    }
+
+    private ArrayList<ISpeler> geefSpelersDieGeweestZijn() {
+        ArrayList<ISpeler> spelers = new ArrayList<ISpeler>();
+        for (ISpeler speler : this.spelers)
+            if (this.gespeeldeKaarten.containsKey(speler))
+                spelers.add(speler);
+        return spelers;
+    }
+
+    private HashMap<String, Kaart> geefGespeeldeKaartenOpBasisVanNaam() {
+        HashMap<String, Kaart> huidigeBord = new HashMap<String, Kaart>();
+        for (ISpeler speler : geefSpelersDieGeweestZijn())
+            huidigeBord.put(speler.geefNaam(),
+                    this.gespeeldeKaarten.get(speler));
+        return huidigeBord;
     }
 
     // TODO: 2016-11-4: nog testen
@@ -79,11 +107,12 @@ class Slag {
      * @return De valide tespeelde kaart.
      */
     private Kaart vraagValideKaart(ISpeler speler) {
-        Kaart kaart;
+        Kaart kaart = null;
         ArrayList<Kaart> hand = speler.toonHand();
         do {
             kaart = speler.geefKaart(
-                    new ArrayList<Kaart>(this.gespeeldeKaarten.values()));
+                    geefSpelerNamenDieGeweestZijn(),
+                    geefGespeeldeKaartenOpBasisVanNaam());
             if(speler == this.spelers.get(0))
                 return speler.verwijderKaartUitHand(kaart);
         } while (!kaartVoldoetAanBediening(hand, kaart));

@@ -34,10 +34,11 @@ public interface ISpeler {
 
     /**
      * Gooi een kaart op, de beste kaart wint de slag.
-     * @param kaarten De kaarten die zichtbaar op tafel liggen.
+     * @param spelerNamen De namen van spelers die al opgegooid hebben.
+     * @param bord De kaart per speler die opgegooit is.
      * @return De op te gooien kaart.
      */
-    Kaart geefKaart(ArrayList<Kaart> kaarten);
+    Kaart geefKaart(ArrayList<String> spelerNamen, HashMap<String, Kaart> bord);
 
     /**
      * Verwijderd de kaart uit de hand van de speler.

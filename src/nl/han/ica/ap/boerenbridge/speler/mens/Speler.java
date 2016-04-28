@@ -43,8 +43,9 @@ public class Speler implements ISpeler {
     }
 
     @Override
-    public Kaart geefKaart(ArrayList<Kaart> bord) {
-        return this.spelerController.vraagKaart(bord, this.hand);
+    public Kaart geefKaart(ArrayList<String> spelerNamen,
+                           HashMap<String, Kaart> bord) {
+        return this.spelerController.vraagKaart(spelerNamen, bord, this.hand);
     }
 
     @Override

@@ -19,6 +19,6 @@ public class Main {
         spel.neemDeel(new ComputerSpeler("cpu 2"));
         spel.neemDeel(new ComputerSpeler("cpu 3"));
         spel.neemDeel(new ComputerSpeler("cpu 4"));
-        spel.neemDeel(new Speler("JohanBot"));
+        spel.neemDeel(new Speler("Johan"));
     }
 }

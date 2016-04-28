@@ -25,7 +25,9 @@ public class SlagTest {
             public String geefNaam() { return ""; }
             public int doeBieding() { return 0; }
             public void ontvangKaart(Kaart kaart) { }
-            public Kaart geefKaart(ArrayList<Kaart> kaarten) { return kaart; }
+            public Kaart geefKaart(
+                    ArrayList<String> spelers,
+                    HashMap<String, Kaart> bord) { return kaart; }
             public Kaart verwijderKaartUitHand(Kaart kaart) { return kaart; }
             public void updateRondeTussenstand(
                     HashMap<String, Integer> tussenstand) { }
@@ -46,7 +48,9 @@ public class SlagTest {
             public String geefNaam() { return ""; }
             public int doeBieding() { return 0; }
             public void ontvangKaart(Kaart kaart) { }
-            public Kaart geefKaart(ArrayList<Kaart> kaarten) { return kaart; }
+            public Kaart geefKaart(
+                    ArrayList<String> spelers,
+                    HashMap<String, Kaart> bord) { return kaart; }
             public Kaart verwijderKaartUitHand(Kaart kaart) { return kaart; }
             public void updateRondeTussenstand(
                     HashMap<String, Integer> tussenstand) { }
@@ -67,7 +71,9 @@ public class SlagTest {
             public String geefNaam() { return ""; }
             public int doeBieding() { return 0; }
             public void ontvangKaart(Kaart kaart) { }
-            public Kaart geefKaart(ArrayList<Kaart> kaarten) { return kaart; }
+            public Kaart geefKaart(
+                    ArrayList<String> spelers,
+                    HashMap<String, Kaart> bord) { return kaart; }
             public Kaart verwijderKaartUitHand(Kaart kaart) { return kaart; }
             public void updateRondeTussenstand(
                     HashMap<String, Integer> tussenstand) { }
@@ -88,7 +94,9 @@ public class SlagTest {
             public String geefNaam() { return ""; }
             public int doeBieding() { return 0; }
             public void ontvangKaart(Kaart kaart) { }
-            public Kaart geefKaart(ArrayList<Kaart> kaarten) { return kaart; }
+            public Kaart geefKaart(
+                    ArrayList<String> spelers,
+                    HashMap<String, Kaart> bord) { return kaart; }
             public Kaart verwijderKaartUitHand(Kaart kaart) { return kaart; }
             public void updateRondeTussenstand(
                     HashMap<String, Integer> tussenstand) { }
@@ -109,7 +117,9 @@ public class SlagTest {
             public String geefNaam() { return ""; }
             public int doeBieding() { return 0; }
             public void ontvangKaart(Kaart kaart) { }
-            public Kaart geefKaart(ArrayList<Kaart> kaarten) { return kaart; }
+            public Kaart geefKaart(
+                    ArrayList<String> spelers,
+                    HashMap<String, Kaart> bord) { return kaart; }
             public Kaart verwijderKaartUitHand(Kaart kaart) { return kaart; }
             public void updateRondeTussenstand(
                     HashMap<String, Integer> tussenstand) { }

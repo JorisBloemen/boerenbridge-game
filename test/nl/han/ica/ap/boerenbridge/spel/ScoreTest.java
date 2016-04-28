@@ -20,7 +20,9 @@ public class ScoreTest {
             public String geefNaam() { return ""; }
             public int doeBieding() { return 0; }
             public void ontvangKaart(Kaart kaart) {}
-            public Kaart geefKaart(ArrayList<Kaart> kaarten) { return null; }
+            public Kaart geefKaart(
+                    ArrayList<String> spelers,
+                    HashMap<String, Kaart> bord) { return null; }
             public Kaart verwijderKaartUitHand(Kaart kaart) { return null; }
             public void updateRondeTussenstand(
                     HashMap<String, Integer> tussenstand) { }
