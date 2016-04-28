@@ -66,6 +66,12 @@ class Ronde {
             totaleBieding += vraagValideBieding(speler, totaleBieding);
     }
 
+    /**
+     * Laat de speler een bod doen en blijf dit vragen totdat het bod valide is.
+     * @param speler De speler die het bod moet doen.
+     * @param totaleBieding De som van de tot nu to gekozen biedingen.
+     * @return Het bod van de speler.
+     */
     private int vraagValideBieding(ISpeler speler, int totaleBieding) {
         int bieding;
         do {
