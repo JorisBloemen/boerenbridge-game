@@ -118,10 +118,17 @@ class Ronde {
             Slag slag = new Slag(new ArrayList<ISpeler>(this.spelers));
             ISpeler slagWinnaar = slag.speelSlag();
             this.scores.get(slagWinnaar).winSlag();
+            roteerNaarWinnaar(slagWinnaar);
             geefTussenstandDoor();
-            Collections.rotate(this.spelers,
-                    -(this.spelers.indexOf(slagWinnaar)));
         }
+    }
+
+    /**
+     * Roteer de lijst met spelers zodat de winnar vooraan de lijst staat.
+     * @param winnaar De speler die vooraan de lijst moet komen te staan.
+     */
+    private void roteerNaarWinnaar(ISpeler winnaar) {
+        Collections.rotate(this.spelers, -(this.spelers.indexOf(winnaar)));
     }
 
     /**
