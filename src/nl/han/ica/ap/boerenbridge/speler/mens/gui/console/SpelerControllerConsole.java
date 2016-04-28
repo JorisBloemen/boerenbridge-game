@@ -57,22 +57,31 @@ public class SpelerControllerConsole implements ISpelerController {
 
     @Override
     public int vraagBod(ArrayList<Kaart> hand) {
+        System.out.println("Hand:");
         toonKaarten(hand);
-        System.out.println("Doe een bod:");
-        return vraagInputInteger();
+        System.out.println("\nDoe een bod:");
+        int userInput = vraagInputInteger();
+        System.out.println();
+        return userInput;
     }
 
     @Override
     public void toonBord(ArrayList<Kaart> bord) {
+        System.out.println("Bord:");
         toonKaarten(bord);
+        System.out.println();
     }
 
     @Override
     public Kaart vraagKaart(ArrayList<Kaart> bord, ArrayList<Kaart> hand) {
+        System.out.println("Bord:");
         toonKaarten(bord);
+        System.out.println("\nHand:");
         toonKaartenMetIndex(hand);
-        System.out.println("Geef de index van de kaart die je wilt spelen:");
-        return hand.get(vraagInputInteger());
+        System.out.println("\nGeef de index van de kaart die je wilt spelen:");
+        Kaart kaart = hand.get(vraagInputInteger());
+        System.out.println();
+        return kaart;
         // TODO: 20160419: verwijder uit lijst. Na verificatie van spel.
     }
 
@@ -82,6 +91,7 @@ public class SpelerControllerConsole implements ISpelerController {
         System.out.println("Tussenstand ronde:");
         for (Map.Entry<String, Integer> e : tussenstand.entrySet())
             System.out.println(e.getKey() + ": " + e.getValue());
+        System.out.println();
     }
 
     @Override
@@ -93,11 +103,13 @@ public class SpelerControllerConsole implements ISpelerController {
             System.out.println(
                     e.getKey() + ": "
                             + e.getValue()[0] + " | " + e.getValue()[1]);
+        System.out.println();
     }
 
     @Override
     public void bekijkBord(ArrayList<Kaart> bord) {
         System.out.println("Gespeelde kaarten:");
         toonKaarten(bord);
+        System.out.println();
     }
 }

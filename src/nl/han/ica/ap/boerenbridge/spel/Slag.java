@@ -34,7 +34,19 @@ class Slag {
      */
     ISpeler speelSlag() {
         vraagKaarten();
+        toonBordAanSpelers();
         return bepaalWinnaar();
+    }
+
+    /**
+     * Laat de spelers het bord zien.
+     */
+    private void toonBordAanSpelers() {
+        ArrayList<Kaart> bord = new ArrayList<Kaart>();
+        for (Map.Entry<ISpeler, Kaart> kaart : this.gespeeldeKaarten.entrySet())
+            bord.add(kaart.getValue());
+        for (ISpeler speler : this.spelers)
+            speler.bekijkBord(new ArrayList<Kaart>(bord));
     }
 
     // TODO: 2016-11-4: nog testen

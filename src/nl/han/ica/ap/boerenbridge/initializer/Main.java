@@ -1,6 +1,8 @@
 package nl.han.ica.ap.boerenbridge.initializer;
 
 import nl.han.ica.ap.boerenbridge.spel.Spel;
+import nl.han.ica.ap.boerenbridge.speler.computer.ComputerSpeler;
+import nl.han.ica.ap.boerenbridge.speler.mens.Speler;
 
 /**
  * Initialiseert het spel.
@@ -13,6 +15,10 @@ public class Main {
      */
     public static void main(String[] args) {
         Spel spel = new Spel();
-        // whoho
+        spel.neemDeel(new ComputerSpeler("cpu 1"));
+        spel.neemDeel(new ComputerSpeler("cpu 2"));
+        spel.neemDeel(new ComputerSpeler("cpu 3"));
+        spel.neemDeel(new ComputerSpeler("cpu 4"));
+        spel.neemDeel(new Speler("JohanBot"));
     }
 }
