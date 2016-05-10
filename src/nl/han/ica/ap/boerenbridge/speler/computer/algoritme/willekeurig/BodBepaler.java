@@ -12,6 +12,12 @@ import static nl.han.ica.ap.boerenbridge.kaart.KaartType.SCHOPPEN;
  */
 public class BodBepaler implements IBieding {
 
+    private int bodCounter;
+
+    public BodBepaler() {
+        this.bodCounter = 0;
+    }
+
     /**
      * Bedenkt een bod op basis van het aantal schoppen in de hand.
      * @param hand De kaarten die de speler ontvangen heeft.
@@ -20,7 +26,14 @@ public class BodBepaler implements IBieding {
      */
     @Override
     public int bepaalBieding(ArrayList<Kaart> hand, ArrayList<Integer> biedingen) {
-        return (int) (countSchoppen(hand) * 0.67);
+        int bod = ((int) (countSchoppen(hand) * 0.67)) - this.bodCounter;
+        this.bodCounter++;
+        return bod;
+    }
+
+    @Override
+    public void resetBodCounter() {
+        this.bodCounter = 0;
     }
 
     /**
