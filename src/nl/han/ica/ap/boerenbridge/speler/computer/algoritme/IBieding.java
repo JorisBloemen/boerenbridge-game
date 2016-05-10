@@ -15,4 +15,11 @@ public interface IBieding {
      * @return De optimale bieding.
      */
     int bepaalBieding(ArrayList<Kaart> hand, ArrayList<Integer> biedingen);
+
+    /**
+     * Reset de counter van het bod algoritme. Deze counter zorgt ervoor dat
+     * een bod niet meerdere keren hetzelfde zegt als de som van de biedingen
+     * gelijk is aan het aantal gedeelde kaarten.
+     */
+    void resetBodCounter();
 }

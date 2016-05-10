@@ -49,6 +49,7 @@ public class ComputerSpeler implements ISpeler {
     @Override
     public void ontvangKaart(Kaart kaart) {
         this.hand.add(kaart);
+        this.biedingAlgoritme.resetBodCounter();
     }
 
     @Override
