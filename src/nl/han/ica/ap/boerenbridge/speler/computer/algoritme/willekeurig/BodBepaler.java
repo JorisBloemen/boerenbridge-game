@@ -26,7 +26,9 @@ public class BodBepaler implements IBieding {
      */
     @Override
     public int bepaalBieding(ArrayList<Kaart> hand, ArrayList<Integer> biedingen) {
-        int bod = ((int) (countSchoppen(hand) * 0.67)) - this.bodCounter;
+        int bod = (int) (countSchoppen(hand) * 0.67);
+        if (bod != 0) bod -= this.bodCounter;
+        else          bod += this.bodCounter;
         this.bodCounter++;
         return bod;
     }
