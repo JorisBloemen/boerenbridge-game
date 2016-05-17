@@ -1,20 +1,29 @@
 package nl.han.ica.ap.boerenbridge.speler.computer.algoritme;
 
 import nl.han.ica.ap.boerenbridge.kaart.Kaart;
+import nl.han.ica.ap.boerenbridge.kaart.KaartType;
+import nl.han.ica.ap.boerenbridge.kaart.KaartWaarde;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Houd bij welke kaarten zijn gespeeld.
  */
 public class Kaartteller {
-    private ArrayList<Kaart> gespeeldeKaarten;
+    private List<Kaart> gespeeldeKaarten, ongespeeldeKaarten;
 
     /**
      * Initialiseerd de kaartteller.
      */
     public Kaartteller() {
         this.gespeeldeKaarten = new ArrayList<Kaart>();
+        this.ongespeeldeKaarten = new ArrayList<Kaart>();
+        for (KaartType type : KaartType.values())
+            for (KaartWaarde waarde : KaartWaarde.values())
+                this.ongespeeldeKaarten.add(new Kaart(type, waarde));
     }
 
     /**
@@ -23,8 +32,13 @@ public class Kaartteller {
      */
     public void update(ArrayList<Kaart> bord) {
         for (Kaart kaart : bord)
-            if (!kaartGespeeld(kaart))
+            if (!kaartGespeeld(kaart)) {
                 this.gespeeldeKaarten.add(kaart);
+                Optional<Kaart> kaartOptional = this.ongespeeldeKaarten
+                        .stream().filter(k -> k.compareTo(kaart)).findFirst();
+                if (kaartOptional.isPresent())
+                    this.ongespeeldeKaarten.remove(kaartOptional.get());
+            }
     }
 
     // TODO: 20160415: Waarom moeten de kaarten gereturned worden, kan deze functionaliteit niet in de kaartteller?
@@ -32,8 +46,25 @@ public class Kaartteller {
      * Geeft alle gespeelde kaarten terug.
      * @return Alle gespeelde kaarten.
      */
-    public ArrayList<Kaart> getKaarten() {
+    public List<Kaart> getGespeeldeKaartenKaarten() {
         return this.gespeeldeKaarten;
+    }
+
+    /**
+     * Geeft alle kaarten die nog niet gespeeld zijn en niet in de hand zitten.
+     * @param hand De kaarten in de hand van de speler.
+     * @return Geeft alle kaarten die nog niet gespeeld zijn minus de hand van
+     *         de speler. De kaarten die terug gegeven worden zijn niet dezelfde
+     *         objecten als de speler in de hand heeft en dienen vergeleken te
+     *         worden met de compareTo functie.
+     */
+    public List<Kaart> getOngespeeldeKaarten(ArrayList<Kaart> hand) {
+        List<Kaart> ongespeeldeKaarten = this.ongespeeldeKaarten;
+        for (Kaart kaart : hand)
+            ongespeeldeKaarten = ongespeeldeKaarten.stream()
+                    .filter(k -> !k.compareTo(kaart))
+                    .collect(Collectors.toList());
+        return ongespeeldeKaarten;
     }
 
     /**
