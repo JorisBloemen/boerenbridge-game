@@ -3,6 +3,7 @@ package nl.han.ica.ap.boerenbridge.speler.mens;
 import nl.han.ica.ap.boerenbridge.kaart.Kaart;
 import nl.han.ica.ap.boerenbridge.speler.ISpeler;
 import nl.han.ica.ap.boerenbridge.speler.mens.gui.console.SpelerControllerConsole;
+import nl.han.ica.ap.boerenbridge.speler.mens.gui.graphic.SpelerControllerGraphic;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +24,7 @@ public class Speler implements ISpeler {
     public Speler(String naam) {
         this.naam = naam;
         this.hand = new ArrayList<Kaart>();
-        this.spelerController = new SpelerControllerConsole();
+        this.spelerController = new SpelerControllerGraphic();
     }
 
     @Override
@@ -54,13 +55,15 @@ public class Speler implements ISpeler {
     }
 
     @Override
-    public void updateRondeTussenstand(HashMap<String, Integer> tussenstand) {
-        this.spelerController.toonTussenstandRonde(tussenstand);
+    public void updateRondeTussenstand(HashMap<String, Integer> tussenstand,
+                                       int rondenummer) {
+        this.spelerController.toonTussenstandRonde(tussenstand, rondenummer);
     }
 
     @Override
-    public void updateSlagTussenstand(HashMap<String, int[]> tussenstand) {
-        this.spelerController.toonTussenstandSlag(tussenstand);
+    public void updateSlagTussenstand(HashMap<String, int[]> tussenstand,
+                                      int slagnummer) {
+        this.spelerController.toonTussenstandSlag(tussenstand, slagnummer);
     }
 
     @Override

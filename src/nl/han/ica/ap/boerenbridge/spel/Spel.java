@@ -69,7 +69,7 @@ public class Spel implements ISpel {
 
         for (ISpeler speler : this.spelers)
             speler.updateRondeTussenstand(
-                    new HashMap<String, Integer>(tussenstand));
+                    new HashMap<String, Integer>(tussenstand), this.beurt + 1);
     }
 
     /**

@@ -39,13 +39,15 @@ public interface ISpelerController {
      * Toon de gebruiker de tussenstand in punten per speler.
      * @param tussenstand Het aantal punten per speler.
      */
-    void toonTussenstandRonde(HashMap<String, Integer> tussenstand);
+    void toonTussenstandRonde(HashMap<String, Integer> tussenstand,
+                              int rondenummer);
 
     /**
      * Toon de gebruiker de tussenstand in slagen per speler.
      * @param tussenstand Het aantal slagen dat elke speler gewonnen heeft.
      */
-    void toonTussenstandSlag(HashMap<String, int[]> tussenstand);
+    void toonTussenstandSlag(HashMap<String, int[]> tussenstand,
+                             int slagnummer);
 
     /**
      * Laat de speler zien welke kaarten deze ronde gespeeld zijn.

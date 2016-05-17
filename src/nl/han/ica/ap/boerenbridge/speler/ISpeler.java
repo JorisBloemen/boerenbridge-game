@@ -50,14 +50,16 @@ public interface ISpeler {
      * Ontvang de tussenstand in punten per speler.
      * @param tussenstand De score per speler.
      */
-    void updateRondeTussenstand(HashMap<String, Integer> tussenstand);
+    void updateRondeTussenstand(HashMap<String, Integer> tussenstand,
+                                int rondenummer);
 
     /**
      * Ontvang het aantal gewonnen slagen per speler, met hun bijbehorend bod.
      * @param tussenstand Tussenstand per speler (naam) met hierin eerst het
      *                    bod, gevolgd door het aantal gewonnen slagen.
      */
-    void updateSlagTussenstand(HashMap<String, int[]> tussenstand);
+    void updateSlagTussenstand(HashMap<String, int[]> tussenstand,
+                               int slagnummer);
 
     /**
      * Geef alle kaarten in de hand van de speler terug.
