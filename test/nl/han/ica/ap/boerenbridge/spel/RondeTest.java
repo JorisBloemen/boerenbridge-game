@@ -23,7 +23,10 @@ public class RondeTest {
         this.speler1 = new ISpeler() {
             Kaart kaart = new Kaart(SCHOPPEN, VIER);
             public String geefNaam() { return ""; }
-            public int doeBieding() { return 1; }
+            public int doeBieding(
+                    ArrayList<String> spelerNamen,
+                    HashMap<String, Integer> biedingen)
+            { return 1; }
             public void ontvangKaart(Kaart kaart) { }
             public Kaart geefKaart(
                     ArrayList<String> spelers,
@@ -46,7 +49,10 @@ public class RondeTest {
         this.speler2 = new ISpeler() {
             Kaart kaart = new Kaart(SCHOPPEN, ACHT);
             public String geefNaam() { return ""; }
-            public int doeBieding() { return 1; }
+            public int doeBieding(
+                    ArrayList<String> spelerNamen,
+                    HashMap<String, Integer> biedingen)
+            { return 1; }
             public void ontvangKaart(Kaart kaart) { }
             public Kaart geefKaart(
                     ArrayList<String> spelers,
@@ -69,7 +75,10 @@ public class RondeTest {
         this.speler3 = new ISpeler() {
             Kaart kaart = new Kaart(HARTEN, VIER);
             public String geefNaam() { return ""; }
-            public int doeBieding() { return 0; }
+            public int doeBieding(
+                    ArrayList<String> spelerNamen,
+                    HashMap<String, Integer> biedingen)
+            { return 0; }
             public void ontvangKaart(Kaart kaart) { }
             public Kaart geefKaart(
                     ArrayList<String> spelers,
@@ -92,7 +101,10 @@ public class RondeTest {
         this.speler4 = new ISpeler() {
             Kaart kaart = new Kaart(RUITEN, VIER);
             public String geefNaam() { return ""; }
-            public int doeBieding() { return 0; }
+            public int doeBieding(
+                    ArrayList<String> spelerNamen,
+                    HashMap<String, Integer> biedingen)
+            { return 0; }
             public void ontvangKaart(Kaart kaart) { }
             public Kaart geefKaart(
                     ArrayList<String> spelers,
@@ -115,7 +127,10 @@ public class RondeTest {
         this.speler5 = new ISpeler() {
             Kaart kaart = new Kaart(RUITEN, ZEVEN);
             public String geefNaam() { return ""; }
-            public int doeBieding() { return 0; }
+            public int doeBieding(
+                    ArrayList<String> spelerNamen,
+                    HashMap<String, Integer> biedingen)
+            { return 0; }
             public void ontvangKaart(Kaart kaart) { }
             public Kaart geefKaart(
                     ArrayList<String> spelers,

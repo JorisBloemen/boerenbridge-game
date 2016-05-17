@@ -22,9 +22,12 @@ public interface ISpeler {
 
     /**
      * Doe een bod over het aantal verwachte gewonnen slagen.
+     * @param spelerNamen De namen van de spelers die al een bod gedaan hebben.
+     * @param biedingen De biedingen die gedaan zijn door voorgaande spelers.
      * @return Het gemaakte bod.
      */
-    int doeBieding();
+    int doeBieding(ArrayList<String> spelerNamen,
+                   HashMap<String, Integer> biedingen);
 
     /**
      * Ontvang een kaart van de deler (spel).

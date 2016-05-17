@@ -33,8 +33,10 @@ public class Speler implements ISpeler {
     }
 
     @Override
-    public int doeBieding() {
-        return this.spelerController.vraagBod(this.hand);
+    public int doeBieding(ArrayList<String> spelerNamen,
+                          HashMap<String, Integer> biedingen) {
+        return this.spelerController.vraagBod(
+                this.hand, spelerNamen, biedingen);
     }
 
     @Override

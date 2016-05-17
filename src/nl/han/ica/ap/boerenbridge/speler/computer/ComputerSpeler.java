@@ -41,7 +41,8 @@ public class ComputerSpeler implements ISpeler {
     }
 
     @Override
-    public int doeBieding() {
+    public int doeBieding(ArrayList<String> spelerNamen,
+                          HashMap<String, Integer> biedingen) {
         return this.biedingAlgoritme.bepaalBieding(
                 this.hand, new ArrayList<Integer>());
     }

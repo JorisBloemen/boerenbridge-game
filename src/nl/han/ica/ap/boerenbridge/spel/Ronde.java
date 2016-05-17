@@ -61,25 +61,37 @@ class Ronde {
      * slagen.
      */
     private void vraagBiedingen() {
-        // TODO: 2016-04-11: nog testen
-        int totaleBieding = 0;
+        ArrayList<String>        spelerNamen   = new ArrayList<String>();
+        HashMap<String, Integer> biedingen     = new HashMap<String, Integer>();
+        int                      totaleBieding = 0;
 
         for (ISpeler speler : this.spelers)
-            totaleBieding += vraagValideBieding(speler, totaleBieding);
+            totaleBieding += vraagValideBieding(
+                    speler,
+                    totaleBieding,
+                    spelerNamen,
+                    biedingen);
     }
 
     /**
      * Laat de speler een bod doen en blijf dit vragen totdat het bod valide is.
      * @param speler De speler die het bod moet doen.
      * @param totaleBieding De som van de tot nu to gekozen biedingen.
+     * @param spelerNamen De namen van spelers die een bod hebben uitgebracht,
+     *                    in volgorde van uitbrengen.
+     * @param biedingen De biedingen die voorgaande spelers hebben uitgebracht.
      * @return Het bod van de speler.
      */
-    private int vraagValideBieding(ISpeler speler, int totaleBieding) {
+    private int vraagValideBieding(ISpeler speler, int totaleBieding,
+                                   ArrayList<String> spelerNamen,
+                                   HashMap<String, Integer> biedingen) {
         int bieding;
         do {
-            bieding = speler.doeBieding();
+            bieding = speler.doeBieding(spelerNamen, biedingen);
         } while (!(biedingNietHogerDanAantalSlagen(bieding)
                 && somOngelijkAanAantalSlagen(bieding, totaleBieding, speler)));
+        spelerNamen.add(speler.geefNaam());
+        biedingen.put(speler.geefNaam(), bieding);
         this.scores.put(speler, new Score(speler, bieding));
         return bieding;
     }

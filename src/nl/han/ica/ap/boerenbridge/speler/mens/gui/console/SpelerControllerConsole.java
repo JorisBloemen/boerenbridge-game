@@ -1,6 +1,7 @@
 package nl.han.ica.ap.boerenbridge.speler.mens.gui.console;
 
 import nl.han.ica.ap.boerenbridge.kaart.Kaart;
+import nl.han.ica.ap.boerenbridge.speler.ISpeler;
 import nl.han.ica.ap.boerenbridge.speler.mens.ISpelerController;
 
 import java.io.BufferedReader;
@@ -69,8 +70,13 @@ public class SpelerControllerConsole implements ISpelerController {
     }
 
     @Override
-    public int vraagBod(ArrayList<Kaart> hand) {
-        System.out.println("Hand:");
+    public int vraagBod(ArrayList<Kaart> hand,
+                        ArrayList<String> spelerNamen,
+                        HashMap<String, Integer> biedingen) {
+        System.out.println("Voorgaande biedingen:");
+        for (String spelerNaam : spelerNamen)
+            System.out.println(spelerNaam + ": " + biedingen.get(spelerNaam));
+        System.out.println("\nHand:");
         toonKaarten(hand);
         System.out.println("\nDoe een bod:");
         int userInput = vraagInputInteger();
