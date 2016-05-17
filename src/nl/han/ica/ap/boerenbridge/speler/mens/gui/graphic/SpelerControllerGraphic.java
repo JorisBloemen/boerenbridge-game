@@ -17,7 +17,8 @@ public class SpelerControllerGraphic implements ISpelerController {
     }
 
     @Override
-    public int vraagBod(ArrayList<Kaart> hand) {
+    public int vraagBod(ArrayList<Kaart> hand, ArrayList<String> spelerNamen,
+                        HashMap<String, Integer> biedingen) {
         return gui.doeEenBod();
     }
 
