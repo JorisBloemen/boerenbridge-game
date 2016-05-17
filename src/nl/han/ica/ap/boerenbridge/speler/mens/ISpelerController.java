@@ -13,9 +13,14 @@ public interface ISpelerController {
     /**
      * Vraag gebruiker een bod te doen.
      * @param hand De kaarten die de speler in zijn hand heeft.
+     * @param spelerNamen De namen van spelers die voor de huidige speler
+     *                    geboden hebben. Op volgorde van uitbrengen.
+     * @param biedingen De biedingen die door voorgaande spelers gedaan zijn.
      * @return Het bod van de gebruiker.
      */
-    int vraagBod(ArrayList<Kaart> hand);
+    int vraagBod(ArrayList<Kaart> hand,
+                 ArrayList<String> spelerNamen,
+                 HashMap<String, Integer> biedingen);
 
     /**
      * Toon de kaarten die gespeeld zijn.

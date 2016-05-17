@@ -18,7 +18,10 @@ public class ScoreTest {
     public void setUp() throws Exception {
         ISpeler speler = new ISpeler() {
             public String geefNaam() { return ""; }
-            public int doeBieding() { return 0; }
+            public int doeBieding(
+                    ArrayList<String> spelerNamen,
+                    HashMap<String, Integer> biedingen)
+            { return 0; }
             public void ontvangKaart(Kaart kaart) {}
             public Kaart geefKaart(
                     ArrayList<String> spelers,
