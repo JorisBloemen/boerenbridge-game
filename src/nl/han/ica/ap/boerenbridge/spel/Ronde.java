@@ -15,7 +15,6 @@ class Ronde {
     private Kaartspel kaartspel;
     private ArrayList<ISpeler> spelers;
     private int aantalSlagen;
-    private int slag;
     private HashMap<ISpeler, Score> scores;
 
     /**
@@ -128,8 +127,6 @@ class Ronde {
      */
     private void speelSlagen() {
         for (int i = 0; i < this.aantalSlagen; i++) {
-            this.slag = i + 1;
-
             Slag slag = new Slag(new ArrayList<ISpeler>(this.spelers));
             ISpeler slagWinnaar = slag.speelSlag();
             this.scores.get(slagWinnaar).winSlag();
@@ -156,7 +153,7 @@ class Ronde {
                     this.scores.get(speler).getValue());
         for (ISpeler speler : this.spelers)
             speler.updateSlagTussenstand(
-                    new HashMap<String, int[]>(tussenstand), this.slag);
+                    new HashMap<String, int[]>(tussenstand));
     }
 
     /**

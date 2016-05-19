@@ -107,8 +107,7 @@ public class SpelerControllerConsole implements ISpelerController {
     }
 
     @Override
-    public void toonTussenstandRonde(HashMap<String, Integer> tussenstand,
-                                     int rondenummer) {
+    public void toonTussenstandRonde(HashMap<String, Integer> tussenstand) {
         // TODO: 20160419: Ook het nummer van de ronde laten zien?
         System.out.println("Tussenstand ronde:");
         for (Map.Entry<String, Integer> e : tussenstand.entrySet())
@@ -117,8 +116,7 @@ public class SpelerControllerConsole implements ISpelerController {
     }
 
     @Override
-    public void toonTussenstandSlag(HashMap<String, int[]> tussenstand,
-    int slagnummer) {
+    public void toonTussenstandSlag(HashMap<String, int[]> tussenstand) {
         // TODO: 20160419: Ook het bod van de speler laten zien?
         System.out.println("Tussenstand gewonnen slagen:");
         System.out.println("Speler: bod | score");

@@ -25,7 +25,6 @@ public class SpelerControllerGraphic implements ISpelerController {
 
     @Override
     public void toonBord(ArrayList<Kaart> bord) {
-
     }
 
     @Override
@@ -33,25 +32,17 @@ public class SpelerControllerGraphic implements ISpelerController {
                             HashMap<String, Kaart> bord,
                             ArrayList<Kaart> hand) {
         gui.updateHand(hand);
-        Kaart geselecteerdeKaart = null;
-        while(geselecteerdeKaart == null){
-            geselecteerdeKaart = gui.getGeselecteerdeKaart();
-        }
-        System.out.println("ontsnapt");
-        return geselecteerdeKaart;
-
+        return gui.getGeselecteerdeKaart(hand);
     }
 
     @Override
-    public void toonTussenstandRonde(HashMap<String, Integer> tussenstand,
-                                     int rondenummer) {
-        gui.updateTussenstand(tussenstand, rondenummer);
+    public void toonTussenstandRonde(HashMap<String, Integer> tussenstand) {
+        gui.updateTussenstand(tussenstand);
     }
 
     @Override
-    public void toonTussenstandSlag(HashMap<String, int[]> tussenstand,
-                                    int slagnummer) {
-        gui.updateSlagScore(tussenstand, slagnummer);
+    public void toonTussenstandSlag(HashMap<String, int[]> tussenstand) {
+        gui.updateSlagScore(tussenstand);
     }
 
     @Override

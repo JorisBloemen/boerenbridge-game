@@ -24,7 +24,7 @@ public class Speler implements ISpeler {
     public Speler(String naam) {
         this.naam = naam;
         this.hand = new ArrayList<Kaart>();
-        this.spelerController = new SpelerControllerConsole();
+        this.spelerController = new SpelerControllerGraphic();
     }
 
     @Override
@@ -57,15 +57,13 @@ public class Speler implements ISpeler {
     }
 
     @Override
-    public void updateRondeTussenstand(HashMap<String, Integer> tussenstand,
-                                       int rondenummer) {
-        this.spelerController.toonTussenstandRonde(tussenstand, rondenummer);
+    public void updateRondeTussenstand(HashMap<String, Integer> tussenstand) {
+        this.spelerController.toonTussenstandRonde(tussenstand);
     }
 
     @Override
-    public void updateSlagTussenstand(HashMap<String, int[]> tussenstand,
-                                      int slagnummer) {
-        this.spelerController.toonTussenstandSlag(tussenstand, slagnummer);
+    public void updateSlagTussenstand(HashMap<String, int[]> tussenstand) {
+        this.spelerController.toonTussenstandSlag(tussenstand);
     }
 
     @Override

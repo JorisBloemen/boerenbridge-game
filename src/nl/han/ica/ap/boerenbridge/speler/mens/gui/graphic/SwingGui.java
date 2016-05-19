@@ -19,7 +19,8 @@ public class SwingGui {
     private JLabel slag;
     private JTable slagScore;
     private JPanel panel1, panel2, panel3, panel4;
-    private Kaart geselecteerdeKaart;
+
+    private Kaart geselecteerdeKaart = null;
 
     public SwingGui() {
         // create the frame
@@ -73,8 +74,7 @@ public class SwingGui {
         this.window.setVisible(true);
     }
 
-    public void updateTussenstand(HashMap<String, Integer> tussenstand,
-                                  int rondenummer) {
+    public void updateTussenstand(HashMap<String, Integer> tussenstand) {
         String columnNames[] = {"Naam", "Score"};
         String tussenstandArray[][] = new String[5][2];
         int i = 0;
@@ -84,7 +84,7 @@ public class SwingGui {
             i++;
         }
         this.panel1.removeAll();
-        this.rondeNummer.setText("Ronde " + rondenummer);
+        this.rondeNummer.setText("Ronde");
         this.panel1.add(rondeNummer);
         this.tussenstand = new JTable(tussenstandArray, columnNames);
         this.panel1.add(this.tussenstand);
@@ -92,8 +92,7 @@ public class SwingGui {
         this.window.repaint();
     }
 
-    public void updateSlagScore(HashMap<String, int[]> tussenstand,
-                                int slagnummer) {
+    public void updateSlagScore(HashMap<String, int[]> tussenstand) {
         String columnNames[] = {"Naam", "Bod", "Gewonnen"};
         String tussenstandArray[][] = new String[5][3];
         int i = 0;
@@ -104,7 +103,7 @@ public class SwingGui {
             i++;
         }
         this.panel3.removeAll();
-        this.slag.setText("Slag " + slagnummer);
+        this.slag.setText("Slag");
         this.panel3.add(this.slag);
         this.slagScore = new JTable(tussenstandArray, columnNames);
         this.panel3.add(this.slagScore);
@@ -131,32 +130,61 @@ public class SwingGui {
 
     public void updateHand(ArrayList<Kaart> hand) {
         this.panel4.removeAll();
-        SwingGui swingGui = this;
         for (Kaart kaart : hand) {
-            JButton b = new JButton(kaart.getKaartType() + " " +
-            kaart.getKaartWaarde());
-            b.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    swingGui.setGeselecteerdeKaart(kaart);
-                    System.out.println(kaart.getKaartType());
-                }
-            });
+            JButton b = new KaartKnop(this, kaart, false);
             panel4.add(b);
         }
         this.window.pack();
         this.window.repaint();
     }
 
-    public Kaart getGeselecteerdeKaart(){
-        return this.geselecteerdeKaart;
+    private class KaartKnop extends JButton{
+        public KaartKnop(SwingGui gui, Kaart kaart, boolean actie) {
+            super(kaart.getKaartType() + " " + kaart.getKaartWaarde());
+
+            if(actie){
+                this.addActionListener(new KaartActie(gui, kaart));
+            }
+        }
     }
 
-    public void setGeselecteerdeKaart(Kaart kaart){
+    private class KaartActie implements ActionListener {
+        private SwingGui gui;
+        private Kaart kaart;
+
+        public KaartActie(SwingGui gui, Kaart kaart){
+            this.gui = gui;
+            this.kaart = kaart;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            this.gui.reactieOpKnop(this.kaart);
+        }
+    }
+
+    public void reactieOpKnop(Kaart kaart){
         this.geselecteerdeKaart = kaart;
-
-        System.out.println("bijna gaan");
+        System.out.println(this.geselecteerdeKaart.getKaartType() + " " +
+        this.geselecteerdeKaart.getKaartWaarde());
     }
+
+    public Kaart getGeselecteerdeKaart(ArrayList<Kaart> hand) {
+        this.panel4.removeAll();
+        for (Kaart kaart : hand) {
+            KaartKnop b = new KaartKnop(this, kaart, true);
+            panel4.add(b);
+        }
+        this.window.pack();
+        this.window.repaint();
+        JOptionPane.showMessageDialog(this.window, "Kies de te spelen kaart");
+        while(geselecteerdeKaart == null);
+        this.updateHand(hand);
+        return geselecteerdeKaart;
+    }
+
+
+
 
     public int doeEenBod(){
         Object[] possibilities = {0,1,2,3,4,5,6,7,8,9,10};
