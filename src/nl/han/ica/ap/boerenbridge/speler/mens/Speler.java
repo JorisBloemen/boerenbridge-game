@@ -24,7 +24,7 @@ public class Speler implements ISpeler {
     public Speler(String naam) {
         this.naam = naam;
         this.hand = new ArrayList<Kaart>();
-        this.spelerController = new SpelerControllerGraphic();
+        this.spelerController = new SpelerControllerConsole();
     }
 
     @Override

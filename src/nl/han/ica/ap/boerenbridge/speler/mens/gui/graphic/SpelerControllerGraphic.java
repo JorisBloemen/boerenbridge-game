@@ -19,6 +19,7 @@ public class SpelerControllerGraphic implements ISpelerController {
     @Override
     public int vraagBod(ArrayList<Kaart> hand, ArrayList<String> spelerNamen,
                         HashMap<String, Integer> biedingen) {
+        gui.updateHand(hand);
         return gui.doeEenBod();
     }
 
@@ -31,7 +32,14 @@ public class SpelerControllerGraphic implements ISpelerController {
     public Kaart vraagKaart(ArrayList<String> spelerNamen,
                             HashMap<String, Kaart> bord,
                             ArrayList<Kaart> hand) {
-        return null;
+        gui.updateHand(hand);
+        Kaart geselecteerdeKaart = null;
+        while(geselecteerdeKaart == null){
+            geselecteerdeKaart = gui.getGeselecteerdeKaart();
+        }
+        System.out.println("ontsnapt");
+        return geselecteerdeKaart;
+
     }
 
     @Override

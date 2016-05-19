@@ -47,6 +47,20 @@ public class Spel implements ISpel {
     private void speelSpel() {
         //roteerNaarRandomSpeler();
         for (; this.beurt < 19; this.beurt++) {
+            HashMap<String, Integer> beginstand = new HashMap<>();
+            for(ISpeler speler : this.spelers){
+                beginstand.put(speler.geefNaam(), 0);
+            }
+            for(ISpeler speler : this.spelers){
+                speler.updateRondeTussenstand(beginstand, this.beurt + 1);
+            }
+            HashMap<String, int[]> beginstand2 = new HashMap<>();
+            for(ISpeler speler : this.spelers){
+                beginstand2.put(speler.geefNaam(), new int[]{0, 0});
+            }
+            for(ISpeler speler : this.spelers){
+                speler.updateSlagTussenstand(beginstand2, 1);
+            }
             Ronde ronde = new Ronde(
                     new ArrayList<ISpeler>(this.spelers), bepaalSlagen());
             berekenTussenstand(ronde.speelRonde());

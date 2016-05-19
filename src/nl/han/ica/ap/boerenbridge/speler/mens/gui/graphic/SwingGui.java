@@ -4,6 +4,8 @@ import nl.han.ica.ap.boerenbridge.kaart.Kaart;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +19,7 @@ public class SwingGui {
     private JLabel slag;
     private JTable slagScore;
     private JPanel panel1, panel2, panel3, panel4;
+    private Kaart geselecteerdeKaart;
 
     public SwingGui() {
         // create the frame
@@ -63,6 +66,8 @@ public class SwingGui {
         this.window.getContentPane().add(this.panel3, BorderLayout.LINE_END);
         this.window.getContentPane().add(this.panel4, BorderLayout.PAGE_END);
 
+
+        //this.window.setSize(800, 600);
         // add components
         this.window.pack();
         this.window.setVisible(true);
@@ -78,8 +83,12 @@ public class SwingGui {
             tussenstandArray[i][1] = e.getValue() + "";
             i++;
         }
-        this.tussenstand = new JTable(tussenstandArray, columnNames);
+        this.panel1.removeAll();
         this.rondeNummer.setText("Ronde " + rondenummer);
+        this.panel1.add(rondeNummer);
+        this.tussenstand = new JTable(tussenstandArray, columnNames);
+        this.panel1.add(this.tussenstand);
+        this.window.pack();
         this.window.repaint();
     }
 
@@ -94,8 +103,12 @@ public class SwingGui {
             tussenstandArray[i][2] = e.getValue()[1] + "";
             i++;
         }
-        this.slagScore = new JTable(tussenstandArray, columnNames);
+        this.panel3.removeAll();
         this.slag.setText("Slag " + slagnummer);
+        this.panel3.add(this.slag);
+        this.slagScore = new JTable(tussenstandArray, columnNames);
+        this.panel3.add(this.slagScore);
+        this.window.pack();
         this.window.repaint();
     }
 
@@ -105,22 +118,44 @@ public class SwingGui {
         for (String naam : spelersNamen) {
             JPanel card = new JPanel();
             card.setLayout(new BoxLayout(card, BoxLayout.PAGE_AXIS));
-            JButton but = new JButton(bord.get(naam).toString());
+            JButton but = new JButton(bord.get(naam).getKaartType() +
+            " " + bord.get(naam).getKaartWaarde());
             card.add(but);
             JLabel lab = new JLabel(naam);
             card.add(lab);
             this.playedCards.add(card);
         }
+        this.window.pack();
         this.window.repaint();
     }
 
     public void updateHand(ArrayList<Kaart> hand) {
         this.panel4.removeAll();
+        SwingGui swingGui = this;
         for (Kaart kaart : hand) {
-            JButton b = new JButton(kaart.toString());
+            JButton b = new JButton(kaart.getKaartType() + " " +
+            kaart.getKaartWaarde());
+            b.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    swingGui.setGeselecteerdeKaart(kaart);
+                    System.out.println(kaart.getKaartType());
+                }
+            });
             panel4.add(b);
         }
+        this.window.pack();
         this.window.repaint();
+    }
+
+    public Kaart getGeselecteerdeKaart(){
+        return this.geselecteerdeKaart;
+    }
+
+    public void setGeselecteerdeKaart(Kaart kaart){
+        this.geselecteerdeKaart = kaart;
+
+        System.out.println("bijna gaan");
     }
 
     public int doeEenBod(){

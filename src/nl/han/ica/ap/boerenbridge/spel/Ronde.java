@@ -51,7 +51,6 @@ class Ronde {
      */
     private void deelKaarten() {
         for (int i = 0; i < this.aantalSlagen; i++)
-            this.slag = i + 1;
             for(ISpeler speler : this.spelers)
                 speler.ontvangKaart(this.kaartspel.trekKaart());
     }
@@ -129,6 +128,8 @@ class Ronde {
      */
     private void speelSlagen() {
         for (int i = 0; i < this.aantalSlagen; i++) {
+            this.slag = i + 1;
+
             Slag slag = new Slag(new ArrayList<ISpeler>(this.spelers));
             ISpeler slagWinnaar = slag.speelSlag();
             this.scores.get(slagWinnaar).winSlag();
