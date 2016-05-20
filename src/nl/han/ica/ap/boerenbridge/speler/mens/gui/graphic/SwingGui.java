@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SwingGui {
+class SwingGui {
 
     private JFrame window;
     private JLabel rondeNummer;
@@ -20,9 +20,14 @@ public class SwingGui {
     private JTable slagScore;
     private JPanel panel1, panel2, panel3, panel4;
 
-    private Kaart geselecteerdeKaart = null;
+    private Kaart geselecteerdeKaart;
 
-    public SwingGui() {
+    /**
+     * Initialiseerd de gui, tekend het initiele scherm.
+     */
+    SwingGui() {
+        this.geselecteerdeKaart = null;
+
         // create the frame
         this.window = new JFrame("Boeren Bridge");
 
@@ -84,7 +89,12 @@ public class SwingGui {
         this.window.setVisible(true);
     }
 
-    public void updateTussenstand(HashMap<String, Integer> tussenstand, int rondenummer) {
+    /**
+     * Update de tussenstand score.
+     * @param tussenstand De score per speler.
+     * @param rondenummer De ronde waarin deze tussenstand gelt.
+     */
+    void updateTussenstand(HashMap<String, Integer> tussenstand, int rondenummer) {
         String columnNames[] = {"Naam", "Score"};
         String tussenstandArray[][] = new String[5][2];
         int i = 0;
@@ -102,7 +112,12 @@ public class SwingGui {
         this.window.repaint();
     }
 
-    public void updateSlagScore(HashMap<String, int[]> tussenstand, int slagnummer) {
+    /**
+     * Update de tussenstand van de slag.
+     * @param tussenstand Het bod en tot nu toe gewonnen slagen per speler.
+     * @param slagnummer Hoeveel slagen er gespeeld zijn.
+     */
+    void updateSlagScore(HashMap<String, int[]> tussenstand, int slagnummer) {
         String columnNames[] = {"Naam", "Bod", "Gewonnen"};
         String tussenstandArray[][] = new String[5][3];
         int i = 0;
@@ -121,7 +136,12 @@ public class SwingGui {
         this.window.repaint();
     }
 
-    public void updatePlayedCards(ArrayList<String> spelersNamen,
+    /**
+     * Update het bord met kaarten die door andere spelers zijn opgegooit.
+     * @param spelersNamen De namen van de andere spelers (op volgorde van opgooien).
+     * @param bord De kaarten die de spelers hebben opgegooit.
+     */
+    void updatePlayedCards(ArrayList<String> spelersNamen,
                                   HashMap<String, Kaart> bord) {
         this.playedCards.removeAll();
         for (String naam : spelersNamen) {
@@ -138,65 +158,72 @@ public class SwingGui {
         this.window.repaint();
     }
 
-    public void updateHand(ArrayList<Kaart> hand) {
+    /**
+     * Repaint de hand.
+     * @param hand Kaarten die een speler in de hand heeft.
+     */
+    void updateHand(ArrayList<Kaart> hand) {
         this.panel4.removeAll();
         for (Kaart kaart : hand) {
-            JButton b = new KaartKnop(this, kaart, false);
+            JButton b = new KaartKnop(kaart);
             panel4.add(b);
         }
         this.window.pack();
         this.window.repaint();
     }
 
-    private class KaartKnop extends JButton{
-        public KaartKnop(SwingGui gui, Kaart kaart, boolean actie) {
+    /**
+     * Klasse om een knop aan te maken voor een kaart.
+     */
+    private class KaartKnop extends JButton {
+        KaartKnop(Kaart kaart) {
             super(kaart.getKaartType() + " " + kaart.getKaartWaarde());
+        }
 
-            if(actie){
-                this.addActionListener(new KaartActie(gui, kaart));
+        KaartKnop(Kaart kaart, ActionListener actionListener) {
+            this(kaart);
+            this.addActionListener(actionListener);
+        }
+    }
+
+    /**
+     * Verranderd de waarde van geslecteerde kaart naar de kaart waar de
+     * gebruiker op gedrukt heeft.
+     * @param kaart De kaart waarop de gebruiker heeft geklikt.
+     */
+    private void reactieOpKnop(Kaart kaart){
+        this.geselecteerdeKaart = kaart;
+    }
+
+    /**
+     * Vraag aan de gebruiker welke kaart hij op wil gooien.
+     * @param hand De huidige hand van de speler.
+     * @return De kaart die de gebruiker heeft aangeklikt.
+     */
+    Kaart getGeselecteerdeKaart(ArrayList<Kaart> hand) {
+        this.geselecteerdeKaart = null;
+        this.panel4.removeAll();
+        for (Kaart kaart : hand) {
+            KaartKnop b = new KaartKnop(kaart, e -> reactieOpKnop(kaart));
+            panel4.add(b);
+        }
+        this.window.pack();
+        this.window.repaint();
+        while(this.geselecteerdeKaart == null) {
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
+        return this.geselecteerdeKaart;
     }
 
-    private class KaartActie implements ActionListener {
-        private SwingGui gui;
-        private Kaart kaart;
-
-        public KaartActie(SwingGui gui, Kaart kaart){
-            this.gui = gui;
-            this.kaart = kaart;
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            this.gui.reactieOpKnop(this.kaart);
-        }
-    }
-
-    public void reactieOpKnop(Kaart kaart){
-        this.geselecteerdeKaart = kaart;
-        System.out.println(this.geselecteerdeKaart.getKaartType() + " " +
-        this.geselecteerdeKaart.getKaartWaarde());
-    }
-
-    public Kaart getGeselecteerdeKaart(ArrayList<Kaart> hand) {
-        this.panel4.removeAll();
-        for (Kaart kaart : hand) {
-            KaartKnop b = new KaartKnop(this, kaart, true);
-            panel4.add(b);
-        }
-        this.window.pack();
-        this.window.repaint();
-        JOptionPane.showMessageDialog(this.window, "Kies de te spelen kaart");
-        while(geselecteerdeKaart == null);
-        this.updateHand(hand);
-        return geselecteerdeKaart;
-    }
-
-
-
-
-    public int doeEenBod(){
+    /**
+     * Vraag de speler een bod te doen.
+     * @return Het bod van de speler.
+     */
+    int doeEenBod(){
         Object[] possibilities = {0,1,2,3,4,5,6,7,8,9,10};
         return (Integer)JOptionPane.showInputDialog(
                 this.window,

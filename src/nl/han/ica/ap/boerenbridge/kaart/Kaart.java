@@ -18,6 +18,15 @@ public class Kaart {
     }
 
     /**
+     * Geeft een String van de kaart.
+     * @return De kaart in String vorm
+     *         example: "HARTEN DRIE"
+     */
+    public String toString() {
+        return this.kaartType + " " + this.kaartWaarde;
+    }
+
+    /**
      * Geeft het type kaart van de terug.
      * @return Het type van de kaart.
      */
