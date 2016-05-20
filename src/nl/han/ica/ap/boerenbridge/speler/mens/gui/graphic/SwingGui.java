@@ -46,7 +46,7 @@ public class SwingGui {
             rondeDummy.put("" + i, 0);
         }
         updateTussenstand(rondeDummy, 1);
-        this.panel1.add(this.tussenstand);
+        this.panel1.add(new JScrollPane(this.tussenstand));
 
         //declare panel 2
         this.panel2.setBackground(Color.green);
@@ -61,7 +61,7 @@ public class SwingGui {
         this.slag = new JLabel();
         this.panel3.add(this.slag);
         this.slagScore = new JTable();
-        this.panel3.add(this.slagScore);
+        this.panel3.add(new JScrollPane(this.slagScore));
         HashMap<String, int[]> slagDummy = new HashMap<String, int[]>();
         for(int i = 1; i < 6; i++){
             slagDummy.put("" + i, new int[2]);
@@ -97,7 +97,7 @@ public class SwingGui {
         this.rondeNummer.setText("Stand na ronde " + rondenummer);
         this.panel1.add(rondeNummer);
         this.tussenstand = new JTable(tussenstandArray, columnNames);
-        this.panel1.add(this.tussenstand);
+        this.panel1.add(new JScrollPane(this.tussenstand));
         this.window.pack();
         this.window.repaint();
     }
@@ -116,7 +116,7 @@ public class SwingGui {
         this.slag.setText("Slag " + slagnummer);
         this.panel3.add(this.slag);
         this.slagScore = new JTable(tussenstandArray, columnNames);
-        this.panel3.add(this.slagScore);
+        this.panel3.add(new JScrollPane(this.slagScore));
         this.window.pack();
         this.window.repaint();
     }
