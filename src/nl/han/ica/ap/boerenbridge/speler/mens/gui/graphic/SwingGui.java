@@ -230,20 +230,28 @@ class SwingGui {
      * Vraag de speler een bod te doen.
      * @return Het bod van de speler.
      */
-    int doeEenBod(ArrayList<String> spelerNamen, HashMap<String, Integer> biedingen){
-        Object[] possibilities = {0,1,2,3,4,5,6,7,8,9,10};
+    int doeEenBod(ArrayList<String> spelerNamen, HashMap<String, Integer> biedingen, int maxBod){
+        int antiBod = maxBod;
+        if (spelerNamen.size() == 4)
+            for (Integer bod : biedingen.values())
+                antiBod -= bod;
+        ArrayList<Integer> possibilities = new ArrayList<Integer>();
+        for (int i = 0; i <= maxBod; i++)
+            if (spelerNamen.size() != 4 || i != antiBod)
+                possibilities.add(i);
         String message = "Voorgaande biedingen\n";
         for (String spelerNaam : spelerNamen)
             message = message + spelerNaam + ": " + biedingen.get(spelerNaam) + "\n";
         message = message + "Doe een bieding\n";
-        return (Integer)JOptionPane.showInputDialog(
+        return possibilities.get(JOptionPane.showOptionDialog(
                 this.window,
                 message,
                 "Doe een bieding",
-                JOptionPane.PLAIN_MESSAGE,
+                JOptionPane.NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
                 null,
-                possibilities,
-                0);
+                possibilities.toArray(),
+                0));
     }
 }
 

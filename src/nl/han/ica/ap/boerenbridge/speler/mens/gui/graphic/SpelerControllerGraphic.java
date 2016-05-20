@@ -30,7 +30,7 @@ public class SpelerControllerGraphic implements ISpelerController {
     public int vraagBod(ArrayList<Kaart> hand, ArrayList<String> spelerNamen,
                         HashMap<String, Integer> biedingen) {
         gui.updateHand(hand);
-        return gui.doeEenBod(spelerNamen, biedingen);
+        return gui.doeEenBod(spelerNamen, biedingen, hand.size());
     }
 
     @Override
