@@ -17,7 +17,11 @@ public class SpelerControllerGraphic implements ISpelerController {
     private int rondeTeller;
     private int slagTeller;
 
-    public SpelerControllerGraphic(){
+    /**
+     * Constructor voor SpelerControllerGraphic.
+     * Initialiseerd tondeTeller, slagTeller een de drawEngine.
+     */
+    public SpelerControllerGraphic() {
         this.rondeTeller = 1;
         this.slagTeller = 1;
         this.gui = new SwingGui();
@@ -40,8 +44,7 @@ public class SpelerControllerGraphic implements ISpelerController {
                             ArrayList<Kaart> hand) {
         gui.updatePlayedCards(spelerNamen, bord);
         gui.updateHand(hand);
-        //gui.getGeselecteerdeKaart(bord);
-        return new SpelerControllerConsole().vraagKaart(spelerNamen, bord, hand);
+        return gui.getGeselecteerdeKaart(hand);
     }
 
     @Override

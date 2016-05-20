@@ -193,19 +193,16 @@ public class SwingGui {
         return geselecteerdeKaart;
     }
 
-
-
-
-    public int doeEenBod(ArrayList<String> spelerNamen, HashMap<String, Integer> biedingen){
+    /**
+     * Vraag de speler een bod te doen.
+     * @return Het bod van de speler.
+     */
+    int doeEenBod(){
         Object[] possibilities = {0,1,2,3,4,5,6,7,8,9,10};
-        String message = "Tegenstander(s) bieden:\n";
-        for (String spelerNaam : spelerNamen)
-            message = message + spelerNaam + ": " + biedingen.get(spelerNaam) +"\n";
-        message = message + "Doe een bod:\n";
         return (Integer)JOptionPane.showInputDialog(
                 this.window,
-                message,
-                "Doe een bod",
+                "Doe een bod:\n",
+                "Customized Dialog",
                 JOptionPane.PLAIN_MESSAGE,
                 null,
                 possibilities,
