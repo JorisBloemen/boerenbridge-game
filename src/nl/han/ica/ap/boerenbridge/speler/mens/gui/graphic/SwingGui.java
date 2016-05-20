@@ -41,7 +41,7 @@ class SwingGui {
         this.panel4 = new JPanel();
 
         //declare panel 1
-        this.panel1.setBackground(Color.red);
+        this.panel1.setBackground(Color.green);
         this.panel1.setLayout(new BoxLayout(panel1, BoxLayout.PAGE_AXIS));
         this.rondeNummer = new JLabel();
         this.panel1.add(this.rondeNummer);
@@ -51,7 +51,9 @@ class SwingGui {
             rondeDummy.put("" + i, 0);
         }
         updateTussenstand(rondeDummy, 1);
-        this.panel1.add(new JScrollPane(this.tussenstand));
+        JScrollPane helper = new JScrollPane(this.tussenstand);
+        helper.setPreferredSize(new Dimension(150, 150));
+        this.panel1.add(new JScrollPane(helper));
 
         //declare panel 2
         this.panel2.setBackground(Color.green);
@@ -61,12 +63,14 @@ class SwingGui {
         this.panel2.add(this.playedCards);
 
         //declare panel 3
-        this.panel3.setBackground(Color.blue);
+        this.panel3.setBackground(Color.green);
         this.panel3.setLayout(new BoxLayout(panel3, BoxLayout.PAGE_AXIS));
         this.slag = new JLabel();
         this.panel3.add(this.slag);
         this.slagScore = new JTable();
-        this.panel3.add(new JScrollPane(this.slagScore));
+        JScrollPane helper2 = new JScrollPane(this.slagScore);
+        helper2.setPreferredSize(new Dimension(150, 150));
+        this.panel3.add(new JScrollPane(helper2));
         HashMap<String, int[]> slagDummy = new HashMap<String, int[]>();
         for(int i = 1; i < 6; i++){
             slagDummy.put("" + i, new int[2]);
@@ -74,7 +78,7 @@ class SwingGui {
         updateSlagScore(slagDummy, 1);
 
         //declare panel 4
-        this.panel4.setBackground(Color.orange);
+        this.panel4.setBackground(Color.green);
         this.panel4.setLayout(new BoxLayout(this.panel4, BoxLayout.LINE_AXIS));
 
         this.window.getContentPane().add(this.panel1, BorderLayout.LINE_START);
@@ -107,7 +111,9 @@ class SwingGui {
         this.rondeNummer.setText("Stand na ronde " + rondenummer);
         this.panel1.add(rondeNummer);
         this.tussenstand = new JTable(tussenstandArray, columnNames);
-        this.panel1.add(new JScrollPane(this.tussenstand));
+        JScrollPane helper = new JScrollPane(this.tussenstand);
+        helper.setPreferredSize(new Dimension(150, 150));
+        this.panel1.add(new JScrollPane(helper));
         this.window.pack();
         this.window.repaint();
     }
@@ -131,7 +137,9 @@ class SwingGui {
         this.slag.setText("Slag " + slagnummer);
         this.panel3.add(this.slag);
         this.slagScore = new JTable(tussenstandArray, columnNames);
-        this.panel3.add(new JScrollPane(this.slagScore));
+        JScrollPane helper2 = new JScrollPane(this.slagScore);
+        helper2.setPreferredSize(new Dimension(150, 150));
+        this.panel3.add(new JScrollPane(helper2));
         this.window.pack();
         this.window.repaint();
     }
