@@ -45,16 +45,12 @@ class SwingGui {
         this.panel1.setBackground(Color.green);
         this.panel1.setLayout(new BoxLayout(panel1, BoxLayout.PAGE_AXIS));
         this.rondeNummer = new JLabel();
-        this.panel1.add(this.rondeNummer);
         this.tussenstand = new JTable();
         HashMap<String, Integer> rondeDummy = new HashMap<String, Integer>();
         for(int i = 1; i < 6; i++){
             rondeDummy.put("" + i, 0);
         }
         updateTussenstand(rondeDummy, 1);
-        JScrollPane helper = new JScrollPane(this.tussenstand);
-        helper.setPreferredSize(new Dimension(150, 150));
-        this.panel1.add(new JScrollPane(helper));
 
         //declare panel 2
         this.panel2.setBackground(Color.green);
