@@ -75,7 +75,7 @@ class SwingGui {
         for(int i = 1; i < 6; i++){
             slagDummy.put("" + i, new int[2]);
         }
-        updateSlagScore(slagDummy, 1);
+        updateSlagScore(slagDummy);
 
         //declare panel 4
         this.panel4.setBackground(Color.green);
@@ -121,20 +121,21 @@ class SwingGui {
     /**
      * Update de tussenstand van de slag.
      * @param tussenstand Het bod en tot nu toe gewonnen slagen per speler.
-     * @param slagnummer Hoeveel slagen er gespeeld zijn.
      */
-    void updateSlagScore(HashMap<String, int[]> tussenstand, int slagnummer) {
+    void updateSlagScore(HashMap<String, int[]> tussenstand) {
         String columnNames[] = {"Naam", "Bod", "Gewonnen"};
         String tussenstandArray[][] = new String[5][3];
         int i = 0;
+        int slagnummer = 0;
         for (Map.Entry<String, int[]> e : tussenstand.entrySet()) {
             tussenstandArray[i][0] = e.getKey();
             tussenstandArray[i][1] = e.getValue()[0] + "";
             tussenstandArray[i][2] = e.getValue()[1] + "";
+            slagnummer += e.getValue()[1];
             i++;
         }
         this.panel3.removeAll();
-        this.slag.setText("Slag " + slagnummer);
+        this.slag.setText("Score na slag " + slagnummer);
         this.panel3.add(this.slag);
         this.slagScore = new JTable(tussenstandArray, columnNames);
         JScrollPane helper2 = new JScrollPane(this.slagScore);
@@ -199,8 +200,9 @@ class SwingGui {
      * gebruiker op gedrukt heeft.
      * @param kaart De kaart waarop de gebruiker heeft geklikt.
      */
-    private void reactieOpKnop(Kaart kaart){
+    private void reactieOpKnop(Kaart kaart, ArrayList<Kaart> hand){
         this.geselecteerdeKaart = kaart;
+        this.updateHand(hand);
     }
 
     /**
@@ -212,7 +214,7 @@ class SwingGui {
         this.geselecteerdeKaart = null;
         this.panel4.removeAll();
         for (Kaart kaart : hand) {
-            KaartKnop b = new KaartKnop(kaart, e -> reactieOpKnop(kaart));
+            KaartKnop b = new KaartKnop(kaart, e -> reactieOpKnop(kaart, hand));
             panel4.add(b);
         }
         this.window.pack();

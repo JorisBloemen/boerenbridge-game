@@ -1,5 +1,6 @@
 package nl.han.ica.ap.boerenbridge.speler.mens.gui.graphic;
 
+import com.sun.xml.internal.bind.v2.TODO;
 import nl.han.ica.ap.boerenbridge.kaart.Kaart;
 import nl.han.ica.ap.boerenbridge.kaart.KaartType;
 import nl.han.ica.ap.boerenbridge.kaart.KaartWaarde;
@@ -15,7 +16,6 @@ public class SpelerControllerGraphic implements ISpelerController {
 
     private SwingGui gui;
     private int rondeTeller;
-    private int slagTeller;
 
     /**
      * Constructor voor SpelerControllerGraphic.
@@ -23,7 +23,6 @@ public class SpelerControllerGraphic implements ISpelerController {
      */
     public SpelerControllerGraphic() {
         this.rondeTeller = 1;
-        this.slagTeller = 1;
         this.gui = new SwingGui();
     }
 
@@ -54,12 +53,18 @@ public class SpelerControllerGraphic implements ISpelerController {
 
     @Override
     public void toonTussenstandSlag(HashMap<String, int[]> tussenstand) {
-        gui.updateSlagScore(tussenstand, this.slagTeller);
+        gui.updateSlagScore(tussenstand);
     }
 
     @Override
     public void bekijkBord(ArrayList<String> spelerNamen,
                            HashMap<String, Kaart> bord) {
         gui.updatePlayedCards(spelerNamen, bord);
+        //TODO: 20-5-2016: wanneer er een slag voorbij is moet het bord nog zichtbaar blijven tot dat de speler verder wil
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
     }
 }
