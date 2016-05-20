@@ -41,6 +41,11 @@ public class SwingGui {
         this.rondeNummer = new JLabel();
         this.panel1.add(this.rondeNummer);
         this.tussenstand = new JTable();
+        HashMap<String, Integer> rondeDummy = new HashMap<String, Integer>();
+        for(int i = 1; i < 6; i++){
+            rondeDummy.put("" + i, 0);
+        }
+        updateTussenstand(rondeDummy, 1);
         this.panel1.add(this.tussenstand);
 
         //declare panel 2
@@ -57,6 +62,11 @@ public class SwingGui {
         this.panel3.add(this.slag);
         this.slagScore = new JTable();
         this.panel3.add(this.slagScore);
+        HashMap<String, int[]> slagDummy = new HashMap<String, int[]>();
+        for(int i = 1; i < 6; i++){
+            slagDummy.put("" + i, new int[2]);
+        }
+        updateSlagScore(slagDummy, 1);
 
         //declare panel 4
         this.panel4.setBackground(Color.orange);
@@ -74,7 +84,7 @@ public class SwingGui {
         this.window.setVisible(true);
     }
 
-    public void updateTussenstand(HashMap<String, Integer> tussenstand) {
+    public void updateTussenstand(HashMap<String, Integer> tussenstand, int rondenummer) {
         String columnNames[] = {"Naam", "Score"};
         String tussenstandArray[][] = new String[5][2];
         int i = 0;
@@ -84,7 +94,7 @@ public class SwingGui {
             i++;
         }
         this.panel1.removeAll();
-        this.rondeNummer.setText("Ronde");
+        this.rondeNummer.setText("Stand na ronde " + rondenummer);
         this.panel1.add(rondeNummer);
         this.tussenstand = new JTable(tussenstandArray, columnNames);
         this.panel1.add(this.tussenstand);
@@ -92,7 +102,7 @@ public class SwingGui {
         this.window.repaint();
     }
 
-    public void updateSlagScore(HashMap<String, int[]> tussenstand) {
+    public void updateSlagScore(HashMap<String, int[]> tussenstand, int slagnummer) {
         String columnNames[] = {"Naam", "Bod", "Gewonnen"};
         String tussenstandArray[][] = new String[5][3];
         int i = 0;
@@ -103,7 +113,7 @@ public class SwingGui {
             i++;
         }
         this.panel3.removeAll();
-        this.slag.setText("Slag");
+        this.slag.setText("Slag " + slagnummer);
         this.panel3.add(this.slag);
         this.slagScore = new JTable(tussenstandArray, columnNames);
         this.panel3.add(this.slagScore);
