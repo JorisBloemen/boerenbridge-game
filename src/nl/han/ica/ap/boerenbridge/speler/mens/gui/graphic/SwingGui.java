@@ -41,6 +41,7 @@ class SwingGui {
         this.panel4 = new JPanel();
 
         //declare panel 1
+        this.panel1.removeAll();
         this.panel1.setBackground(Color.green);
         this.panel1.setLayout(new BoxLayout(panel1, BoxLayout.PAGE_AXIS));
         this.rondeNummer = new JLabel();
@@ -87,7 +88,7 @@ class SwingGui {
         this.window.getContentPane().add(this.panel4, BorderLayout.PAGE_END);
 
 
-        //this.window.setSize(800, 600);
+        this.window.setPreferredSize(new Dimension(1300, 250));
         // add components
         this.window.pack();
         this.window.setVisible(true);
