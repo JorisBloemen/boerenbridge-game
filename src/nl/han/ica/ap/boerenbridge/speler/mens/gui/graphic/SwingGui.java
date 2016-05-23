@@ -4,14 +4,15 @@ import nl.han.ica.ap.boerenbridge.kaart.Kaart;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import static javax.swing.SwingConstants.CENTER;
 
 class SwingGui {
 
@@ -19,6 +20,7 @@ class SwingGui {
     private JFrame window;
     private JLabel rondeNummer;
     private Color labelColor;
+    private Border border;
     private JTable tussenstand;
     private JPanel playedCards;
     private JLabel slag;
@@ -36,6 +38,7 @@ class SwingGui {
         this.bordKleur = new Color(0, 77, 0);
         this.labelColor = Color.white;
         this.wachtOpGebruiker = false;
+        this.border = BorderFactory.createMatteBorder(0, 0, 0, 0, this.bordKleur);
 
         // create the frame
         this.window = new JFrame("Boeren Bridge");
@@ -118,13 +121,19 @@ class SwingGui {
             i++;
         }
         this.panel1.removeAll();
+        this.panel1.setBorder(BorderFactory.createEmptyBorder());
         this.rondeNummer.setText("Stand na ronde " + rondenummer);
         this.rondeNummer.setForeground(this.labelColor);
         this.panel1.add(rondeNummer);
         this.tussenstand = new JTable(tussenstandArray, columnNames);
         JScrollPane helper = new JScrollPane(this.tussenstand);
+        helper.getViewport().setBackground(this.bordKleur);
+        helper.setBorder(this.border);
+        helper.setViewportBorder(this.border);
+        this.tussenstand.setBorder(this.border);
         helper.setPreferredSize(new Dimension(150, 150));
         this.panel1.add(new JScrollPane(helper));
+        this.panel1.add(Box.createVerticalGlue());
         this.window.pack();
         this.window.repaint();
     }
@@ -146,13 +155,19 @@ class SwingGui {
             i++;
         }
         this.panel3.removeAll();
+        this.panel3.setBorder(BorderFactory.createEmptyBorder());
         this.slag.setText("Score na slag " + slagnummer);
         this.slag.setForeground(this.labelColor);
         this.panel3.add(this.slag);
         this.slagScore = new JTable(tussenstandArray, columnNames);
         JScrollPane helper2 = new JScrollPane(this.slagScore);
+        helper2.getViewport().setBackground(this.bordKleur);
+        helper2.setBorder(this.border);
+        helper2.setViewportBorder(this.border);
+        this.slagScore.setBorder(this.border);
         helper2.setPreferredSize(new Dimension(150, 150));
         this.panel3.add(new JScrollPane(helper2));
+        this.panel3.add(Box.createVerticalGlue());
         this.window.pack();
         this.window.repaint();
     }
@@ -203,7 +218,10 @@ class SwingGui {
             card.setLayout(new BoxLayout(card, BoxLayout.PAGE_AXIS));
             card.add(new KaartKnop(bord.get(naam)));
             JLabel lab = new JLabel(naam);
+            lab.setForeground(this.labelColor);
             card.add(lab);
+            card.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            card.setBackground(this.bordKleur);
             this.playedCards.add(card);
         }
         this.window.pack();
