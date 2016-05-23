@@ -61,10 +61,10 @@ public class SpelerControllerGraphic implements ISpelerController {
                            HashMap<String, Kaart> bord) {
         gui.updatePlayedCards(spelerNamen, bord);
         //TODO: 20-5-2016: wanneer er een slag voorbij is moet het bord nog zichtbaar blijven tot dat de speler verder wil
-//        try {
-//            Thread.sleep(1000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+    }
+
+    @Override
+    public void verwijderKaartUitHand(ArrayList<Kaart> hand) {
+        this.gui.updateHand(hand);
     }
 }

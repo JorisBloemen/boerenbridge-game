@@ -2,23 +2,28 @@ package nl.han.ica.ap.boerenbridge.speler.mens.gui.graphic;
 
 import nl.han.ica.ap.boerenbridge.kaart.Kaart;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 class SwingGui {
 
+    private Color bordKleur;
     private JFrame window;
     private JLabel rondeNummer;
+    private Color labelColor;
     private JTable tussenstand;
     private JPanel playedCards;
     private JLabel slag;
     private JTable slagScore;
-    private JPanel panel1, panel2, panel3, panel4;
+    private JPanel panel1, panel2, panel3, panel4, panel5;
 
     private Kaart geselecteerdeKaart;
 
@@ -27,6 +32,8 @@ class SwingGui {
      */
     SwingGui() {
         this.geselecteerdeKaart = null;
+        this.bordKleur = new Color(0, 77, 0);
+        this.labelColor = Color.white;
 
         // create the frame
         this.window = new JFrame("Boeren Bridge");
@@ -39,10 +46,11 @@ class SwingGui {
         this.panel2 = new JPanel();
         this.panel3 = new JPanel();
         this.panel4 = new JPanel();
+        this.panel5 = new JPanel();
 
         //declare panel 1
         this.panel1.removeAll();
-        this.panel1.setBackground(Color.green);
+        this.panel1.setBackground(this.bordKleur);
         this.panel1.setLayout(new BoxLayout(panel1, BoxLayout.PAGE_AXIS));
         this.rondeNummer = new JLabel();
         this.tussenstand = new JTable();
@@ -53,14 +61,14 @@ class SwingGui {
         updateTussenstand(rondeDummy, 1);
 
         //declare panel 2
-        this.panel2.setBackground(Color.green);
+        this.panel2.setBackground(this.bordKleur);
         this.playedCards = new JPanel();
         this.playedCards.setLayout(new BoxLayout(playedCards,
                 BoxLayout.LINE_AXIS));
         this.panel2.add(this.playedCards);
 
         //declare panel 3
-        this.panel3.setBackground(Color.green);
+        this.panel3.setBackground(this.bordKleur);
         this.panel3.setLayout(new BoxLayout(panel3, BoxLayout.PAGE_AXIS));
         this.slag = new JLabel();
         this.panel3.add(this.slag);
@@ -75,16 +83,19 @@ class SwingGui {
         updateSlagScore(slagDummy);
 
         //declare panel 4
-        this.panel4.setBackground(Color.green);
+        this.panel4.setBackground(this.bordKleur);
         this.panel4.setLayout(new BoxLayout(this.panel4, BoxLayout.LINE_AXIS));
+
+        //declare panel 5
+        this.panel5.setBackground(this.bordKleur);
 
         this.window.getContentPane().add(this.panel1, BorderLayout.LINE_START);
         this.window.getContentPane().add(this.panel2, BorderLayout.CENTER);
         this.window.getContentPane().add(this.panel3, BorderLayout.LINE_END);
         this.window.getContentPane().add(this.panel4, BorderLayout.PAGE_END);
+        this.window.getContentPane().add(this.panel5, BorderLayout.PAGE_START);
 
-
-        this.window.setPreferredSize(new Dimension(1300, 250));
+        this.window.setPreferredSize(new Dimension(1280, 720));
         // add components
         this.window.pack();
         this.window.setVisible(true);
@@ -106,6 +117,7 @@ class SwingGui {
         }
         this.panel1.removeAll();
         this.rondeNummer.setText("Stand na ronde " + rondenummer);
+        this.rondeNummer.setForeground(this.labelColor);
         this.panel1.add(rondeNummer);
         this.tussenstand = new JTable(tussenstandArray, columnNames);
         JScrollPane helper = new JScrollPane(this.tussenstand);
@@ -133,6 +145,7 @@ class SwingGui {
         }
         this.panel3.removeAll();
         this.slag.setText("Score na slag " + slagnummer);
+        this.slag.setForeground(this.labelColor);
         this.panel3.add(this.slag);
         this.slagScore = new JTable(tussenstandArray, columnNames);
         JScrollPane helper2 = new JScrollPane(this.slagScore);
@@ -153,9 +166,7 @@ class SwingGui {
         for (String naam : spelersNamen) {
             JPanel card = new JPanel();
             card.setLayout(new BoxLayout(card, BoxLayout.PAGE_AXIS));
-            JButton but = new JButton(bord.get(naam).getKaartType() +
-            " " + bord.get(naam).getKaartWaarde());
-            card.add(but);
+            card.add(new KaartKnop(bord.get(naam)));
             JLabel lab = new JLabel(naam);
             card.add(lab);
             this.playedCards.add(card);
@@ -170,9 +181,11 @@ class SwingGui {
      */
     void updateHand(ArrayList<Kaart> hand) {
         this.panel4.removeAll();
+        this.panel4.add(Box.createHorizontalGlue());
         for (Kaart kaart : hand) {
             JButton b = new KaartKnop(kaart);
             panel4.add(b);
+            this.panel4.add(Box.createHorizontalGlue());
         }
         this.window.pack();
         this.window.repaint();
@@ -183,7 +196,18 @@ class SwingGui {
      */
     private class KaartKnop extends JButton {
         KaartKnop(Kaart kaart) {
-            super(kaart.getKaartType() + " " + kaart.getKaartWaarde());
+            super();
+            String path = "/resources/Kaart/" + kaart.toString() + ".png";
+            try {
+                Image img = ImageIO.read(getClass().getResource(path));
+                img = img.getScaledInstance(100, 150, Image.SCALE_DEFAULT);
+                this.setIcon(new ImageIcon(img));
+                this.setPreferredSize(new Dimension(100, 150));
+                this.setBorder(BorderFactory.createEmptyBorder());
+                this.setBackground(bordKleur);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         KaartKnop(Kaart kaart, ActionListener actionListener) {
@@ -198,8 +222,8 @@ class SwingGui {
      * @param kaart De kaart waarop de gebruiker heeft geklikt.
      */
     private void reactieOpKnop(Kaart kaart, ArrayList<Kaart> hand){
-        this.geselecteerdeKaart = kaart;
         this.updateHand(hand);
+        this.geselecteerdeKaart = kaart;
     }
 
     /**
@@ -210,9 +234,11 @@ class SwingGui {
     Kaart getGeselecteerdeKaart(ArrayList<Kaart> hand) {
         this.geselecteerdeKaart = null;
         this.panel4.removeAll();
+        this.panel4.add(Box.createHorizontalGlue());
         for (Kaart kaart : hand) {
             KaartKnop b = new KaartKnop(kaart, e -> reactieOpKnop(kaart, hand));
             panel4.add(b);
+            this.panel4.add(Box.createHorizontalGlue());
         }
         this.window.pack();
         this.window.repaint();
