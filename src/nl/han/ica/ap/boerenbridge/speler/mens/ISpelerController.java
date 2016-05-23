@@ -26,6 +26,7 @@ public interface ISpelerController {
      * Toon de kaarten die gespeeld zijn.
      * @param bord Kaarten die gespeeld zijn.
      */
+    @Deprecated
     void toonBord(ArrayList<Kaart> bord);
 
     /**
