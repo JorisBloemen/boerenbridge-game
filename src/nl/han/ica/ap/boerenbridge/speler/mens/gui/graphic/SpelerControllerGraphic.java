@@ -60,7 +60,7 @@ public class SpelerControllerGraphic implements ISpelerController {
     public void bekijkBord(ArrayList<String> spelerNamen,
                            HashMap<String, Kaart> bord) {
         gui.updatePlayedCards(spelerNamen, bord);
-        //TODO: 20-5-2016: wanneer er een slag voorbij is moet het bord nog zichtbaar blijven tot dat de speler verder wil
+        gui.wachtOpGebruiker("volgede slag");
     }
 
     @Override

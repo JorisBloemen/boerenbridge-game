@@ -26,6 +26,7 @@ class SwingGui {
     private JPanel panel1, panel2, panel3, panel4, panel5;
 
     private Kaart geselecteerdeKaart;
+    private boolean wachtOpGebruiker;
 
     /**
      * Initialiseerd de gui, tekend het initiele scherm.
@@ -34,6 +35,7 @@ class SwingGui {
         this.geselecteerdeKaart = null;
         this.bordKleur = new Color(0, 77, 0);
         this.labelColor = Color.white;
+        this.wachtOpGebruiker = false;
 
         // create the frame
         this.window = new JFrame("Boeren Bridge");
@@ -153,6 +155,39 @@ class SwingGui {
         this.panel3.add(new JScrollPane(helper2));
         this.window.pack();
         this.window.repaint();
+    }
+
+    /**
+     * Callback voor wacht op gebruiker knop (volgende slag).
+     */
+    void setWachtOpGebruiker() {
+        this.panel5.removeAll();
+        this.window.pack();
+        this.window.repaint();
+        this.wachtOpGebruiker = false;
+    }
+
+    /**
+     * Maakt een knop die wacht tot de gebruiker de knop in drukt.
+     */
+    void wachtOpGebruiker(String msg) {
+        this.wachtOpGebruiker = true;
+
+        this.panel5.removeAll();
+        this.panel5.add(Box.createHorizontalGlue());
+        JButton volgedeSlag = new JButton(msg);
+        volgedeSlag.addActionListener(e -> setWachtOpGebruiker());
+        this.panel5.add(volgedeSlag);
+        this.panel5.add(Box.createHorizontalGlue());
+        this.window.pack();
+        this.window.repaint();
+        while (this.wachtOpGebruiker) {
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
