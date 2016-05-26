@@ -78,9 +78,6 @@ class SwingGui {
         this.slag = new JLabel();
         this.panel3.add(this.slag);
         this.slagScore = new JTable();
-        JScrollPane helper2 = new JScrollPane(this.slagScore);
-        helper2.setPreferredSize(new Dimension(150, 150));
-        this.panel3.add(new JScrollPane(helper2));
         HashMap<String, int[]> slagDummy = new HashMap<String, int[]>();
         for(int i = 1; i < 6; i++){
             slagDummy.put("" + i, new int[2]);
@@ -93,6 +90,7 @@ class SwingGui {
 
         //declare panel 5
         this.panel5.setBackground(this.bordKleur);
+        this.panel5.setPreferredSize(new Dimension(1,35));
 
         this.window.getContentPane().add(this.panel1, BorderLayout.LINE_START);
         this.window.getContentPane().add(this.panel2, BorderLayout.CENTER);
@@ -102,7 +100,8 @@ class SwingGui {
 
         this.window.setPreferredSize(new Dimension(1280, 720));
         // add components
-        this.window.pack();
+        //this.window.pack();
+        this.window.repaint();
         this.window.setVisible(true);
     }
 
@@ -131,7 +130,7 @@ class SwingGui {
         helper.setBorder(this.border);
         helper.setViewportBorder(this.border);
         this.tussenstand.setBorder(this.border);
-        helper.setPreferredSize(new Dimension(150, 150));
+        helper.setPreferredSize(new Dimension(150, -280));
         this.panel1.add(new JScrollPane(helper));
         this.panel1.add(Box.createVerticalGlue());
         this.window.pack();
@@ -165,7 +164,7 @@ class SwingGui {
         helper2.setBorder(this.border);
         helper2.setViewportBorder(this.border);
         this.slagScore.setBorder(this.border);
-        helper2.setPreferredSize(new Dimension(150, 150));
+        helper2.setPreferredSize(new Dimension(200,-280));
         this.panel3.add(new JScrollPane(helper2));
         this.panel3.add(Box.createVerticalGlue());
         this.window.pack();
@@ -175,8 +174,9 @@ class SwingGui {
     /**
      * Callback voor wacht op gebruiker knop (volgende slag).
      */
-    void setWachtOpGebruiker() {
+    private void setWachtOpGebruiker() {
         this.panel5.removeAll();
+        this.panel5.setPreferredSize(new Dimension(1,35));
         this.window.pack();
         this.window.repaint();
         this.wachtOpGebruiker = false;
