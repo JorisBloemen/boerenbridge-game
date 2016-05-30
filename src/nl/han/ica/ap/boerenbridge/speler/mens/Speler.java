@@ -3,6 +3,7 @@ package nl.han.ica.ap.boerenbridge.speler.mens;
 import nl.han.ica.ap.boerenbridge.kaart.Kaart;
 import nl.han.ica.ap.boerenbridge.speler.ISpeler;
 import nl.han.ica.ap.boerenbridge.speler.mens.gui.console.SpelerControllerConsole;
+import nl.han.ica.ap.boerenbridge.speler.mens.gui.graphic.SpelerControllerGraphic;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +24,7 @@ public class Speler implements ISpeler {
     public Speler(String naam) {
         this.naam = naam;
         this.hand = new ArrayList<Kaart>();
-        this.spelerController = new SpelerControllerConsole();
+        this.spelerController = new SpelerControllerGraphic();
     }
 
     @Override
@@ -52,7 +53,9 @@ public class Speler implements ISpeler {
 
     @Override
     public Kaart verwijderKaartUitHand(Kaart kaart) {
-        return this.hand.remove(this.hand.indexOf(kaart));
+        kaart = this.hand.remove(this.hand.indexOf(kaart));
+        this.spelerController.verwijderKaartUitHand(this.hand);
+        return kaart;
     }
 
     @Override

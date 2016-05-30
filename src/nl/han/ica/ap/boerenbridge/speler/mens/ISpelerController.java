@@ -26,6 +26,7 @@ public interface ISpelerController {
      * Toon de kaarten die gespeeld zijn.
      * @param bord Kaarten die gespeeld zijn.
      */
+    @Deprecated
     void toonBord(ArrayList<Kaart> bord);
 
     /**
@@ -58,4 +59,10 @@ public interface ISpelerController {
      *             aan het eind van de ronde.
      */
     void bekijkBord(ArrayList<String> spelerNamen, HashMap<String, Kaart> bord);
+
+    /**
+     * Hertekend de hand na het verwijden van een kaart.
+     * @param hand De hand die getekend moet worden.
+     */
+    void verwijderKaartUitHand(ArrayList<Kaart> hand);
 }

@@ -134,4 +134,7 @@ public class SpelerControllerConsole implements ISpelerController {
         toonKaarten(spelerNamen, bord);
         System.out.println();
     }
+
+    @Override
+    public void verwijderKaartUitHand(ArrayList<Kaart> hand) { }
 }
