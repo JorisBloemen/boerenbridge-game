@@ -26,8 +26,16 @@ public class Kaart {
      *         ongelijk zijn.
      */
     public boolean compareTo(Kaart kaart) {
-        return kaart.getKaartType() == this.kaartType
-                && kaart.getKaartWaarde() == this.kaartWaarde;
+        return this.compareType(kaart) && (this.compareValue(kaart) == 0);
+    }
+
+    /**
+     * Vergelijkt of het type van de kaart overeenkomt.
+     * @param kaart Kaart om mee te vergelijken.
+     * @return Of het type overeenkomt.
+     */
+    public boolean compareType(Kaart kaart) {
+        return kaart.getKaartType() == this.kaartType;
     }
 
     /**

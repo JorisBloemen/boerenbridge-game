@@ -2,13 +2,9 @@ package nl.han.ica.ap.boerenbridge.speler.computer;
 
 import nl.han.ica.ap.boerenbridge.kaart.Kaart;
 import nl.han.ica.ap.boerenbridge.speler.ISpeler;
-import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.ABieding;
-import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.AKaart;
-import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.Kaartteller;
-import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.Typeteller;
-import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.willekeurig.BodBepaler;
-import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.willekeurig.KaartBepaler;
+import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.*;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -20,19 +16,35 @@ public class ComputerSpeler implements ISpeler {
 
     private String naam;
     private ArrayList<Kaart> hand;
-    private AKaart kaartAlgoritme;
     private ABieding biedingAlgoritme;
+    private AKaart kaartAlgoritme;
     private Kaartteller kaartteller;
     private Typeteller typeteller;
 
-    public ComputerSpeler(String naam)
+    public ComputerSpeler(String naam) {
+        this(naam, "willekeurig", "willekeurig");
+    }
+
+    public ComputerSpeler(String naam, String bodBepaler, String kaartBepaler)
     {
         this.naam = naam;
         this.hand = new ArrayList<>();
         this.kaartteller = new Kaartteller();
         this.typeteller = new Typeteller(5);
-        this.kaartAlgoritme = new KaartBepaler(this.kaartteller, this.typeteller);
-        this.biedingAlgoritme = new BodBepaler(this.kaartteller, this.typeteller);
+
+        switch (bodBepaler) {
+//            case "montecarlo":
+//                this.biedingAlgoritme = new nl.han.ica.ap.boerenbridge.speler.computer.algoritme.montecarlo.BodBepaler(this.kaartteller, this.typeteller);
+            default:
+                this.biedingAlgoritme = new nl.han.ica.ap.boerenbridge.speler.computer.algoritme.willekeurig.BodBepaler(this.kaartteller, this.typeteller);
+        }
+
+        switch (kaartBepaler) {
+            case "montecarlo":
+                this.kaartAlgoritme = new nl.han.ica.ap.boerenbridge.speler.computer.algoritme.montecarlo.KaartBepaler(this.kaartteller, this.typeteller);
+            default:
+                this.kaartAlgoritme = new nl.han.ica.ap.boerenbridge.speler.computer.algoritme.willekeurig.KaartBepaler(this.kaartteller, this.typeteller);
+        }
     }
 
     @Override
