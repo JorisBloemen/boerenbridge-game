@@ -20,6 +20,7 @@ public class ComputerSpeler implements ISpeler {
     private AKaart kaartAlgoritme;
     private Kaartteller kaartteller;
     private Typeteller typeteller;
+    private int nogTeWinnen;
 
     public ComputerSpeler(String naam) {
         this(naam, "willekeurig", "willekeurig");
@@ -31,6 +32,7 @@ public class ComputerSpeler implements ISpeler {
         this.hand = new ArrayList<>();
         this.kaartteller = new Kaartteller();
         this.typeteller = new Typeteller(5);
+        this.nogTeWinnen = 0;
 
         switch (bodBepaler) {
 //            case "montecarlo":
@@ -58,8 +60,9 @@ public class ComputerSpeler implements ISpeler {
     @Override
     public int doeBieding(ArrayList<String> spelerNamen,
                           HashMap<String, Integer> biedingen) {
-        return this.biedingAlgoritme.bepaalBieding(
+        this.nogTeWinnen = this.biedingAlgoritme.bepaalBieding(
                 this.hand, new ArrayList<>());
+        return this.nogTeWinnen;
     }
 
     @Override
@@ -76,7 +79,7 @@ public class ComputerSpeler implements ISpeler {
             gespeeldeKaarten.add(bord.get(speler));
         kaartteller.update(gespeeldeKaarten);
         return this.kaartAlgoritme.bepaalKaart(
-                this.hand, gespeeldeKaarten);
+                this.hand, gespeeldeKaarten, this.nogTeWinnen);
     }
 
     @Override
@@ -90,9 +93,11 @@ public class ComputerSpeler implements ISpeler {
     @Override
     public void updateRondeTussenstand(HashMap<String, Integer> tussenstand) { }
 
-    // TODO: 2016-04-26: Stratigie aanpassen op basis van de tussenstand.
     @Override
-    public void updateSlagTussenstand(HashMap<String, int[]> tussenstand) { }
+    public void updateSlagTussenstand(HashMap<String, int[]> tussenstand) {
+        int pTussenstand[] = tussenstand.get(this.naam);
+        this.nogTeWinnen = pTussenstand[0] - pTussenstand[1];
+    }
 
     @Override
     public ArrayList<Kaart> toonHand() {

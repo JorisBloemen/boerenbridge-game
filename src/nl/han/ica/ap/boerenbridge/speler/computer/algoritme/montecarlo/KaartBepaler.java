@@ -20,7 +20,7 @@ public class KaartBepaler extends AKaart {
 
     @Override
     public Kaart bepaalKaart(ArrayList<Kaart> hand,
-                             ArrayList<Kaart> gespeeldeKaarten) {
+                             ArrayList<Kaart> gespeeldeKaarten, int nogTeWinnen) {
         List<Kaart> ongespeeldeKaarten = this.kaartteller.getOngespeeldeKaarten(hand);
 
         List<Kaart> toegestaneKaarten = AlgoritmeHelper.toegestaneKaarten(hand, gespeeldeKaarten);
@@ -39,12 +39,17 @@ public class KaartBepaler extends AKaart {
         }
 
         // Bepaal de beste kaart aan de hand van het aatal keer gewonnen.
-        int iBesteKaart = 0;
-        for (int i = 0; i < aantalGewonnen.length; i++)
-            if (aantalGewonnen[i] >= aantalGewonnen[iBesteKaart])
-                iBesteKaart = i;
-
-        return toegestaneKaarten.get(iBesteKaart);
+        int iOpTeGooienKaart = 0;
+        if(nogTeWinnen > 0) {
+            for (int i = 0; i < aantalGewonnen.length; i++)
+                if (aantalGewonnen[i] >= aantalGewonnen[iOpTeGooienKaart])
+                    iOpTeGooienKaart = i;
+        } else {
+            for (int i = 0; i < aantalGewonnen.length; i++)
+                if (aantalGewonnen[i] <= aantalGewonnen[iOpTeGooienKaart])
+                    iOpTeGooienKaart = i;
+        }
+        return toegestaneKaarten.get(iOpTeGooienKaart);
     }
 
     /**

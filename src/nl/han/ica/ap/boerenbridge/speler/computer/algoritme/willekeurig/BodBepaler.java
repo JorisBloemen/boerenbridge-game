@@ -14,8 +14,6 @@ import static nl.han.ica.ap.boerenbridge.kaart.KaartType.SCHOPPEN;
  */
 public class BodBepaler extends ABieding {
 
-    private int bodCounter;
-
     public BodBepaler(Kaartteller kaartteller, Typeteller typeteller) {
         super(kaartteller, typeteller);
     }

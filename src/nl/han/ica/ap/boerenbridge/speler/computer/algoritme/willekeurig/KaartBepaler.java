@@ -26,7 +26,8 @@ public class KaartBepaler extends AKaart {
      */
     @Override
     public Kaart bepaalKaart(
-            ArrayList<Kaart> hand, ArrayList<Kaart> gespeeldeKaarten) {
+            ArrayList<Kaart> hand, ArrayList<Kaart> gespeeldeKaarten,
+            int nogTeWinnen) {
         if (gespeeldeKaarten.size() == 0)
             return getWillekeurigeKaart(hand);
 
