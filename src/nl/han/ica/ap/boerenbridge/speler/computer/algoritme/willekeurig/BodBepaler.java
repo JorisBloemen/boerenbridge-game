@@ -1,7 +1,9 @@
 package nl.han.ica.ap.boerenbridge.speler.computer.algoritme.willekeurig;
 
 import nl.han.ica.ap.boerenbridge.kaart.Kaart;
-import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.IBieding;
+import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.ABieding;
+import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.Kaartteller;
+import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.Typeteller;
 
 import java.util.ArrayList;
 
@@ -10,12 +12,12 @@ import static nl.han.ica.ap.boerenbridge.kaart.KaartType.SCHOPPEN;
 /**
  * Bepaald een bod aan de hand van het algoritme.
  */
-public class BodBepaler implements IBieding {
+public class BodBepaler extends ABieding {
 
     private int bodCounter;
 
-    public BodBepaler() {
-        this.bodCounter = 0;
+    public BodBepaler(Kaartteller kaartteller, Typeteller typeteller) {
+        super(kaartteller, typeteller);
     }
 
     /**
@@ -31,11 +33,6 @@ public class BodBepaler implements IBieding {
         else         bod += this.bodCounter;
         this.bodCounter++;
         return bod;
-    }
-
-    @Override
-    public void resetBodCounter() {
-        this.bodCounter = 0;
     }
 
     /**

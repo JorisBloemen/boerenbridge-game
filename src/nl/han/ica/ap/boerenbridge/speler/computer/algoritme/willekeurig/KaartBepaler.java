@@ -2,14 +2,20 @@ package nl.han.ica.ap.boerenbridge.speler.computer.algoritme.willekeurig;
 
 import nl.han.ica.ap.boerenbridge.kaart.Kaart;
 import nl.han.ica.ap.boerenbridge.kaart.KaartType;
-import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.IKaart;
+import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.AKaart;
+import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.Kaartteller;
+import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.Typeteller;
 
 import java.util.ArrayList;
 
 /**
  * Het algoritme dat een willekeurige geldige kaart bepaald.
  */
-public class KaartBepaler implements IKaart {
+public class KaartBepaler extends AKaart {
+
+    public KaartBepaler(Kaartteller kaartteller, Typeteller typeteller) {
+        super(kaartteller, typeteller);
+    }
 
     /**
      * Kiest een kaart die aan de voorwaarden van het spel voldoet.
@@ -57,7 +63,7 @@ public class KaartBepaler implements IKaart {
     private ArrayList<Kaart> getLegitimeKaarten(KaartType teBekennenType,
                                                 ArrayList<Kaart> hand)
     {
-        ArrayList<Kaart> legitimeKaarten = new ArrayList<Kaart>();
+        ArrayList<Kaart> legitimeKaarten = new ArrayList<>();
         for (Kaart kaart : hand)
             if (kaart.getKaartType() == teBekennenType)
                 legitimeKaarten.add(kaart);

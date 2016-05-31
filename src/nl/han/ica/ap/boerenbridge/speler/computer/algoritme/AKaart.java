@@ -7,7 +7,16 @@ import java.util.ArrayList;
 /**
  * Interface om de te spelen kaart te bepalen.
  */
-public interface IKaart {
+public abstract class AKaart {
+
+    protected Kaartteller kaartteller;
+    protected Typeteller typeteller;
+
+    public AKaart(Kaartteller kaartteller, Typeteller typeteller) {
+        this.kaartteller = kaartteller;
+        this.typeteller = typeteller;
+    }
+
     /**
      * Berekend de meest optimale kaart om uit te spelen.
      * @param hand De kaarten die de speler in zijn hand heeft.
@@ -15,5 +24,6 @@ public interface IKaart {
      *                         opgegooid.
      * @return De meest optimale kaart om uit te spelen.
      */
-    Kaart bepaalKaart(ArrayList<Kaart> hand, ArrayList<Kaart> gespeeldeKaarten);
+    abstract public Kaart bepaalKaart(ArrayList<Kaart> hand,
+                               ArrayList<Kaart> gespeeldeKaarten);
 }

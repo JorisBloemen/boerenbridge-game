@@ -19,8 +19,8 @@ public class Kaartteller {
      * Initialiseerd de kaartteller.
      */
     public Kaartteller() {
-        this.gespeeldeKaarten = new ArrayList<Kaart>();
-        this.ongespeeldeKaarten = new ArrayList<Kaart>();
+        this.gespeeldeKaarten = new ArrayList<>();
+        this.ongespeeldeKaarten = new ArrayList<>();
         for (KaartType type : KaartType.values())
             for (KaartWaarde waarde : KaartWaarde.values())
                 this.ongespeeldeKaarten.add(new Kaart(type, waarde));
@@ -47,7 +47,7 @@ public class Kaartteller {
      * @return Alle gespeelde kaarten.
      */
     public List<Kaart> getGespeeldeKaartenKaarten() {
-        return this.gespeeldeKaarten;
+        return new ArrayList<>(this.gespeeldeKaarten);
     }
 
     /**
@@ -59,7 +59,7 @@ public class Kaartteller {
      *         worden met de compareTo functie.
      */
     public List<Kaart> getOngespeeldeKaarten(ArrayList<Kaart> hand) {
-        List<Kaart> ongespeeldeKaarten = this.ongespeeldeKaarten;
+        List<Kaart> ongespeeldeKaarten = new ArrayList<>(this.ongespeeldeKaarten);
         for (Kaart kaart : hand)
             ongespeeldeKaarten = ongespeeldeKaarten.stream()
                     .filter(k -> !k.compareTo(kaart))

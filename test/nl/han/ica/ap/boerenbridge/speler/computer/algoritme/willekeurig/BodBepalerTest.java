@@ -1,6 +1,8 @@
 package nl.han.ica.ap.boerenbridge.speler.computer.algoritme.willekeurig;
 
 import nl.han.ica.ap.boerenbridge.kaart.Kaart;
+import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.Kaartteller;
+import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.Typeteller;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,8 +19,8 @@ public class BodBepalerTest {
 
     @Before
     public void setUp() throws Exception {
-        this.bodBepaler = new BodBepaler();
-        this.hand = new ArrayList<Kaart>();
+        this.bodBepaler = new BodBepaler(new Kaartteller(), new Typeteller(5));
+        this.hand = new ArrayList<>();
         this.hand.add(new Kaart(SCHOPPEN, VIJF));
         this.hand.add(new Kaart(KLAVEREN, AAS));
         this.hand.add(new Kaart(RUITEN, HEER));
@@ -31,7 +33,7 @@ public class BodBepalerTest {
     @Test
     public void bepaalBieding() throws Exception {
         assertEquals(2, this.bodBepaler.bepaalBieding(
-                this.hand, new ArrayList<Integer>()));
+                this.hand, new ArrayList<>()));
     }
 
 }

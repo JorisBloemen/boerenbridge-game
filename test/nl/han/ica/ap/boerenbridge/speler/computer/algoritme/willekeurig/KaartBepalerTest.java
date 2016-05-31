@@ -1,6 +1,8 @@
 package nl.han.ica.ap.boerenbridge.speler.computer.algoritme.willekeurig;
 
 import nl.han.ica.ap.boerenbridge.kaart.Kaart;
+import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.Kaartteller;
+import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.Typeteller;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,14 +21,15 @@ public class KaartBepalerTest {
 
     @Before
     public void setUp() throws Exception {
-        this.kaartBepaler = new KaartBepaler();
+        this.kaartBepaler = new KaartBepaler(new Kaartteller(),
+                new Typeteller(5));
 
-        this.hand = new ArrayList<Kaart>();
+        this.hand = new ArrayList<>();
         this.hand.add(new Kaart(SCHOPPEN, AAS));
         this.hand.add(new Kaart(HARTEN, HEER));
         this.hand.add(new Kaart(KLAVEREN, TWEE));
 
-        this.gespeeldeKaarten = new ArrayList<Kaart>();
+        this.gespeeldeKaarten = new ArrayList<>();
     }
 
     @Test

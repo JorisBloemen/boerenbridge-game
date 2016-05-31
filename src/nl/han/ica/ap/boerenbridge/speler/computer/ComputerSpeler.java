@@ -2,8 +2,8 @@ package nl.han.ica.ap.boerenbridge.speler.computer;
 
 import nl.han.ica.ap.boerenbridge.kaart.Kaart;
 import nl.han.ica.ap.boerenbridge.speler.ISpeler;
-import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.IBieding;
-import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.IKaart;
+import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.ABieding;
+import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.AKaart;
 import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.Kaartteller;
 import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.Typeteller;
 import nl.han.ica.ap.boerenbridge.speler.computer.algoritme.willekeurig.BodBepaler;
@@ -20,19 +20,19 @@ public class ComputerSpeler implements ISpeler {
 
     private String naam;
     private ArrayList<Kaart> hand;
-    private IKaart kaartAlgoritme;
-    private IBieding biedingAlgoritme;
+    private AKaart kaartAlgoritme;
+    private ABieding biedingAlgoritme;
     private Kaartteller kaartteller;
     private Typeteller typeteller;
 
     public ComputerSpeler(String naam)
     {
         this.naam = naam;
-        this.hand = new ArrayList<Kaart>();
-        this.kaartAlgoritme = new KaartBepaler();
-        this.biedingAlgoritme = new BodBepaler();
+        this.hand = new ArrayList<>();
         this.kaartteller = new Kaartteller();
         this.typeteller = new Typeteller(5);
+        this.kaartAlgoritme = new KaartBepaler(this.kaartteller, this.typeteller);
+        this.biedingAlgoritme = new BodBepaler(this.kaartteller, this.typeteller);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class ComputerSpeler implements ISpeler {
     public int doeBieding(ArrayList<String> spelerNamen,
                           HashMap<String, Integer> biedingen) {
         return this.biedingAlgoritme.bepaalBieding(
-                this.hand, new ArrayList<Integer>());
+                this.hand, new ArrayList<>());
     }
 
     @Override
@@ -56,7 +56,7 @@ public class ComputerSpeler implements ISpeler {
     @Override
     public Kaart geefKaart(ArrayList<String> spelers,
                            HashMap<String, Kaart> bord) {
-        ArrayList<Kaart> gespeeldeKaarten = new ArrayList<Kaart>();
+        ArrayList<Kaart> gespeeldeKaarten = new ArrayList<>();
         for (String speler : spelers)
             gespeeldeKaarten.add(bord.get(speler));
         kaartteller.update(gespeeldeKaarten);
@@ -85,7 +85,7 @@ public class ComputerSpeler implements ISpeler {
     @Override
     public void bekijkBord(ArrayList<String> spelerNamen,
                            HashMap<String, Kaart> bord) {
-        ArrayList<Kaart> gespeeldeKaarten = new ArrayList<Kaart>();
+        ArrayList<Kaart> gespeeldeKaarten = new ArrayList<>();
         for (String spelerNaam : spelerNamen)
             gespeeldeKaarten.add(bord.get(spelerNaam));
         kaartteller.update(gespeeldeKaarten);
