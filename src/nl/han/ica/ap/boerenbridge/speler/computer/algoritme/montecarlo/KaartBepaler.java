@@ -12,7 +12,7 @@ import java.util.List;
 
 public class KaartBepaler extends AKaart {
 
-    final private static int AANTAL_KEER_PER_KAART = 10000;
+    final private static int AANTAL_KEER_PER_KAART = 100000;
 
     public KaartBepaler(Kaartteller kaartteller, Typeteller typeteller) {
         super(kaartteller, typeteller);
@@ -65,8 +65,8 @@ public class KaartBepaler extends AKaart {
         int nRandomKaarten = 4 - huidigBord.size();
 
         for (int i = 0; i < nRandomKaarten; i++) {
-            int rIndex = (int) (Math.random() * ongespeeldeKaarten.size());
-            mogelijkBord.add(ongespeeldeKaarten.remove(rIndex));
+                int rIndex = (int) (Math.random() * ongespeeldeKaarten.size());
+                mogelijkBord.add(ongespeeldeKaarten.remove(rIndex));
         }
 
         return mogelijkBord;

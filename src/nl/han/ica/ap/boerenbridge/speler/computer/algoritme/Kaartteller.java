@@ -21,9 +21,7 @@ public class Kaartteller {
     public Kaartteller() {
         this.gespeeldeKaarten = new ArrayList<>();
         this.ongespeeldeKaarten = new ArrayList<>();
-        for (KaartType type : KaartType.values())
-            for (KaartWaarde waarde : KaartWaarde.values())
-                this.ongespeeldeKaarten.add(new Kaart(type, waarde));
+        resetKaarten();
     }
 
     /**
@@ -65,6 +63,16 @@ public class Kaartteller {
                     .filter(k -> !k.compareTo(kaart))
                     .collect(Collectors.toList());
         return ongespeeldeKaarten;
+    }
+
+    /**
+     * Maak de hele set kaarten opnieuw aan.
+     */
+    public void resetKaarten() {
+        this.ongespeeldeKaarten.clear();
+        for (KaartType type : KaartType.values())
+            for (KaartWaarde waarde : KaartWaarde.values())
+                this.ongespeeldeKaarten.add(new Kaart(type, waarde));
     }
 
     /**

@@ -37,13 +37,16 @@ public class ComputerSpeler implements ISpeler {
 //                this.biedingAlgoritme = new nl.han.ica.ap.boerenbridge.speler.computer.algoritme.montecarlo.BodBepaler(this.kaartteller, this.typeteller);
             default:
                 this.biedingAlgoritme = new nl.han.ica.ap.boerenbridge.speler.computer.algoritme.willekeurig.BodBepaler(this.kaartteller, this.typeteller);
+                break;
         }
 
         switch (kaartBepaler) {
             case "montecarlo":
                 this.kaartAlgoritme = new nl.han.ica.ap.boerenbridge.speler.computer.algoritme.montecarlo.KaartBepaler(this.kaartteller, this.typeteller);
+                break;
             default:
                 this.kaartAlgoritme = new nl.han.ica.ap.boerenbridge.speler.computer.algoritme.willekeurig.KaartBepaler(this.kaartteller, this.typeteller);
+                break;
         }
     }
 
@@ -78,7 +81,9 @@ public class ComputerSpeler implements ISpeler {
 
     @Override
     public Kaart verwijderKaartUitHand(Kaart kaart) {
-        return this.hand.remove(this.hand.indexOf(kaart));
+        kaart = this.hand.remove(this.hand.indexOf(kaart));
+        if (this.hand.size() == 0) this.kaartteller.resetKaarten();
+        return kaart;
     }
 
     // TODO: 2016-04-26: Stratigie aanpassen op basis van de tussenstand.
