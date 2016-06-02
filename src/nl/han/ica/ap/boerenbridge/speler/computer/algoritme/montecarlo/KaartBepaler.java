@@ -12,7 +12,7 @@ import java.util.List;
 
 public class KaartBepaler extends AKaart {
 
-    final private static int AANTAL_KEER_PER_KAART = 100000;
+    final private static int AANTAL_KEER_PER_KAART = 1;
 
     public KaartBepaler(Kaartteller kaartteller, Typeteller typeteller) {
         super(kaartteller, typeteller);
@@ -39,17 +39,69 @@ public class KaartBepaler extends AKaart {
         }
 
         // Bepaal de beste kaart aan de hand van het aatal keer gewonnen.
-        int iOpTeGooienKaart = 0;
-        if(nogTeWinnen > 0) {
-            for (int i = 0; i < aantalGewonnen.length; i++)
+        int iOpTeGooienKaart = 0, mAantalGewonnen = 0;
+
+        for (int i = 0; i < aantalGewonnen.length; i++) {
+            if (nogTeWinnen > 0) {
                 if (aantalGewonnen[i] >= aantalGewonnen[iOpTeGooienKaart])
                     iOpTeGooienKaart = i;
-        } else {
-            for (int i = 0; i < aantalGewonnen.length; i++)
+            } else {
                 if (aantalGewonnen[i] <= aantalGewonnen[iOpTeGooienKaart])
                     iOpTeGooienKaart = i;
+            }
+            if (aantalGewonnen[iOpTeGooienKaart] > mAantalGewonnen)
+                mAantalGewonnen = aantalGewonnen[iOpTeGooienKaart];
         }
+
+        if (mAantalGewonnen == 0)
+            if (nogTeWinnen > 0) {
+                return bepaalLaagsteKaart(hand, gespeeldeKaarten);
+            } else {
+                return bepaalHoogsteKaart(hand, gespeeldeKaarten);
+            }
+
         return toegestaneKaarten.get(iOpTeGooienKaart);
+    }
+
+    private Kaart bepaalLaagsteKaart(List<Kaart> hand, List<Kaart> gespeeldeKaarten) {
+        List<Kaart> toegestaneKaarten = AlgoritmeHelper.toegestaneKaarten(hand, gespeeldeKaarten);
+        int aantalGewonnen[] = bepaalWinrateHand(hand, gespeeldeKaarten);
+        int iOpTeGooienKaart = 0;
+        for (int i = 0; i < aantalGewonnen.length; i++)
+                if (aantalGewonnen[i] <= aantalGewonnen[iOpTeGooienKaart])
+                    iOpTeGooienKaart = i;
+
+        return toegestaneKaarten.get(iOpTeGooienKaart);
+    }
+
+    private Kaart bepaalHoogsteKaart(List<Kaart> hand, List<Kaart> gespeeldeKaarten) {
+        List<Kaart> toegestaneKaarten = AlgoritmeHelper.toegestaneKaarten(hand, gespeeldeKaarten);
+        int aantalGewonnen[] = bepaalWinrateHand(hand, gespeeldeKaarten);
+        int iOpTeGooienKaart = 0;
+        for (int i = 0; i < aantalGewonnen.length; i++)
+            if (aantalGewonnen[i] >= aantalGewonnen[iOpTeGooienKaart])
+                iOpTeGooienKaart = i;
+
+        return toegestaneKaarten.get(iOpTeGooienKaart);
+    }
+
+    private int[] bepaalWinrateHand(List<Kaart> hand, List<Kaart> gespeeldeKaarten) {
+        List<Kaart> ongespeeldeKaarten = this.kaartteller.getOngespeeldeKaarten(hand);
+        List<Kaart> toegestaneKaarten = AlgoritmeHelper.toegestaneKaarten(hand, gespeeldeKaarten);
+        int aantalGewonnen[] = new int[toegestaneKaarten.size()];
+
+        // Voor elke kaart in de toegestaneKaarten tellen hoevaak deze wint.
+        for (int i = 0; i < toegestaneKaarten.size(); i++) {
+            Kaart kaart = toegestaneKaarten.get(i);
+            for (int j = 0; j < AANTAL_KEER_PER_KAART; j++) {
+                List<Kaart> mogelijkBord = genereerBord(kaart,
+                        new ArrayList<>(),
+                        ongespeeldeKaarten);
+                if (AlgoritmeHelper.bepaalWinnaar(mogelijkBord, kaart))
+                    aantalGewonnen[i]++;
+            }
+        }
+        return aantalGewonnen;
     }
 
     /**
@@ -72,6 +124,7 @@ public class KaartBepaler extends AKaart {
         for (int i = 0; i < nRandomKaarten; i++) {
                 int rIndex = (int) (Math.random() * ongespeeldeKaarten.size());
                 mogelijkBord.add(ongespeeldeKaarten.remove(rIndex));
+            // Dikke error ongespeelde kaarten < 4
         }
 
         return mogelijkBord;

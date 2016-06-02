@@ -56,7 +56,7 @@ public class Kaartteller {
      *         objecten als de speler in de hand heeft en dienen vergeleken te
      *         worden met de compareTo functie.
      */
-    public List<Kaart> getOngespeeldeKaarten(ArrayList<Kaart> hand) {
+    public List<Kaart> getOngespeeldeKaarten(List<Kaart> hand) {
         List<Kaart> ongespeeldeKaarten = new ArrayList<>(this.ongespeeldeKaarten);
         for (Kaart kaart : hand)
             ongespeeldeKaarten = ongespeeldeKaarten.stream()
