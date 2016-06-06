@@ -46,6 +46,7 @@ public interface ISpeler {
     /**
      * Verwijderd de kaart uit de hand van de speler.
      * @param kaart De kaart die de speler dient te verwijderen.
+     * @return De verwijderde kaart.
      */
     Kaart verwijderKaartUitHand(Kaart kaart);
 
@@ -71,6 +72,7 @@ public interface ISpeler {
     /**
      * De speler krijgt van het spel alle kaarten door die deze ronde gespeelt
      * zijn.
+     * @param spelerNamen De namen van de spelers in volgorde van spelen.
      * @param bord De kaarten die gespeelt zijn i.c.m. de naam van de speler.
      */
     void bekijkBord(ArrayList<String> spelerNamen, HashMap<String, Kaart> bord);

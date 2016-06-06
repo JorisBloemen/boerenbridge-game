@@ -14,9 +14,10 @@ public class Typeteller {
 
     /**
      * Initialiseerd de typeteller en zet de waarde op het aantal spelers.
+     * @param aantalSpelers Aantal spelers dat mee speelt met het spel.
      */
     public Typeteller(int aantalSpelers) {
-        this.bekendeTypes = new HashMap<KaartType, Integer>();
+        this.bekendeTypes = new HashMap<>();
         for (KaartType kaartType : KaartType.values())
             this.bekendeTypes.put(kaartType, aantalSpelers);
     }

@@ -122,9 +122,9 @@ public class KaartBepaler extends AKaart {
         int nRandomKaarten = 4 - huidigBord.size();
 
         for (int i = 0; i < nRandomKaarten; i++) {
-                int rIndex = (int) (Math.random() * ongespeeldeKaarten.size());
-                mogelijkBord.add(ongespeeldeKaarten.remove(rIndex));
-            // Dikke error ongespeelde kaarten < 4
+            if (ongespeeldeKaarten.size() == 0) break;
+            int rIndex = (int) (Math.random() * ongespeeldeKaarten.size());
+            mogelijkBord.add(ongespeeldeKaarten.remove(rIndex));
         }
 
         return mogelijkBord;

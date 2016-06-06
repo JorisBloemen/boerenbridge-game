@@ -55,6 +55,7 @@ public interface ISpelerController {
 
     /**
      * Laat de speler zien welke kaarten deze ronde gespeeld zijn.
+     * @param spelerNamen De namen van de spelers in volgorde van spelen.
      * @param bord De kaarten die gespeeld zijn i.c.m. de naam van de speler
      *             aan het eind van de ronde.
      */
