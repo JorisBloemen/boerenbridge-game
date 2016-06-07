@@ -12,7 +12,7 @@ import java.util.List;
 
 public class KaartBepaler extends AKaart {
 
-    final private static int AANTAL_KEER_PER_KAART = 1;
+    final private static int AANTAL_KEER_PER_KAART = 100000;
 
     public KaartBepaler(Kaartteller kaartteller, Typeteller typeteller) {
         super(kaartteller, typeteller);
